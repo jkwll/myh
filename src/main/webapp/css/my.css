@@ -1,0 +1,52 @@
+#main {
+	width: 0px;
+	height: 0px;
+	margin: 0 auto 0px;
+	margin-top: 0px
+}
+
+#cat {
+	position: relative;
+	left: -780px;
+	top: 0px;
+}
+
+@media ( max-device-width :1540px) {
+	#main {
+		width: 0px;
+		height: 0px;
+		margin: 0 auto 20px;
+		margin-top: 0px
+	}
+	#cat {
+		position: relative;
+		left: -650px;
+		top: 0px;
+	}
+}
+
+@media ( max-device-width :1330px) {
+	#main {
+		width: 0px;
+		height: 0px;
+		margin: 0 auto 0px;
+		margin-top: 0px
+	}
+	#cat {
+		position: relative;
+		left: -600px;
+		top: 0px;
+	}
+}
+
+@media ( max-device-width :1000px) { <!--
+	小于1000px的时候 -->#main {
+		width: 0px;
+		height: 0px;
+		margin: 0 auto 0px;
+		margin-top: 0px
+	}
+	#cat {
+		display: none
+	}
+}

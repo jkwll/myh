@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<!-- 设置该应用使用的字符集 -->
+	<constant name="struts.i18n.encoding" value="utf-8" />
+	<!-- 后缀名 默认action <constant name="struts.action.extension" value="action"></constant> -->
+
+	<!-- # struts.objectFactory = spring 将action的创建交给spring容器 struts.objectFactory.spring.autoWire 
+		= name spring负责装配Action依赖属性 -->
+	<constant name="struts.objectFactory" value="spring"></constant>
+
+	<package name="page" namespace="/" extends="struts-default">
+
+		<!-- 配置首页菜单的Action -->
+		<action name="" class="top.kuvip.wll.blog.action.IndexAction"
+			method="list">
+			<result name="list">/WEB-INF/jsp/index.jsp</result>
+		</action>
+
+
+		<action name="index" class="top.kuvip.wll.blog.action.IndexAction"
+			method="list">
+			<result name="list">/WEB-INF/jsp/index.jsp</result>
+		</action>
+		<action name="essay" class="top.kuvip.wll.blog.action.EssayAction"
+			method="addCount">
+			<result name="addCount"></result>
+		</action>
+		<action name="search" class="top.kuvip.wll.blog.action.EssayAction"
+			method="search">
+			<result name="show">/WEB-INF/jsp/knowledge.jsp</result>
+		</action>
+
+		<action name="life" class="top.kuvip.wll.blog.action.LifeAction"
+			method="toLife">
+			<result name="list">/WEB-INF/jsp/life.jsp</result>
+		</action>
+		<action name="mood" class="top.kuvip.wll.blog.action.MoodAction"
+			method="mood">
+			<result name="moodlist">/WEB-INF/jsp/moodlist.jsp</result>
+		</action>
+		<action name="knowledge" class="top.kuvip.wll.blog.action.KnowledgeAction"
+			method="toKnowledge">
+			<result name="list">/WEB-INF/jsp/knowledge.jsp</result>
+		</action>
+		<action name="leaveword" class="top.kuvip.wll.blog.action.LeaveWordAction"
+			method="leaveword">
+			<result name="leaveword">/WEB-INF/jsp/leaveword.jsp</result>
+		</action>
+		<action name="about" class="top.kuvip.wll.blog.action.PageAction"
+			method="about">
+			<result name="about">/WEB-INF/jsp/about.jsp</result>
+		</action>
+		<action name="tool" class="top.kuvip.wll.blog.action.PageAction"
+			method="about">
+			<result name="about">/WEB-INF/jsp/tool.jsp</result>
+		</action>
+
+	</package>
+	<!-- 查看文章和按照分类搜索文章 -->
+	<package name="knowledge" namespace="/knowledge" extends="struts-default">
+		<action name="select*" class="top.kuvip.wll.blog.action.EssayTypeAction"
+			method="select">
+			<result name="show">/WEB-INF/jsp/knowledge.jsp</result>
+		</action>
+		<action name="*" class="top.kuvip.wll.blog.action.EssayAction"
+			method="lookEssay">
+			<!-- 如果是 *.jsp 这不会拦截。因为Struts2不拦截jsp -->
+			<result name="look">/knowledge/{1}.jsp</result>
+		</action>
+	</package>
+	<package name="life" namespace="/life" extends="struts-default">
+		<action name="select*" class="top.kuvip.wll.blog.action.EssayTypeAction"
+			method="select">
+			<result name="show">/WEB-INF/jsp/life.jsp</result>
+		</action>
+		<action name="*" class="top.kuvip.wll.blog.action.EssayAction"
+			method="lookEssay">
+			<result name="look">/life/{1}.jsp</result>
+		</action>
+	</package>
+	<!-- 提交留言的Action -->
+	<package name="laveword" namespace="/" extends="struts-default">
+		<action name="submit" class="top.kuvip.wll.blog.action.LeaveWordAction"
+			method="save">
+			<result name="leaveword">/WEB-INF/jsp/leaveword.jsp</result>
+		</action>
+	</package>
+	<!-- 文章访问量统计的Action 弃用 -->
+	<package name="statistics" namespace="/statistics" extends="struts-default">
+		<action name="add" class="top.kuvip.wll.blog.action.EssayAction"
+			method="addCount">
+			<result name="t">/login.jsp</result>
+		</action>
+	</package>
+
+	<package name="login" namespace="/" extends="struts-default">
+		<action name="login" class="top.kuvip.wll.blog.action.UserAction"
+			method="login">
+			<result name="index" type="redirect">admin/index.action</result>
+			<result name="toLogin">/login.jsp</result>
+		</action>
+	</package>
+
+	<package name="logout" namespace="/" extends="struts-default">
+		<action name="logout" class="top.kuvip.wll.blog.action.UserAction"
+			method="logout">
+			<result name="toLogin">/login.jsp</result>
+		</action>
+	</package>
+
+
+	<!-- 配置后台的Action -->
+
+
+	<package name="admin" namespace="/admin" extends="struts-default">
+		<interceptors>
+			<!-- 注册拦截器 -->
+			<interceptor name="privilegeInterceptor"
+				class="top.kuvip.wll.blog.interceptor.PrivilegeInterceptor"></interceptor>
+			<!-- 配置拦截器栈 -->
+			<interceptor-stack name="myStack">
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="privilegeInterceptor">
+
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<!-- 指定默认拦截器栈 -->
+		<default-interceptor-ref name="myStack"></default-interceptor-ref>
+		<!-- 全局结果集配置 -->
+		<global-results>
+			<result name="toLogin">login.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="error"
+				exception="java.lang.RuntimeException"></exception-mapping>
+		</global-exception-mappings>
+		<action name="toLogin" class="top.kuvip.wll.blog.action.UserAction"
+			method="toLogin">
+			<result name="toLogin">/WEB-INF/jsp/admin/login.jsp</result>
+		</action>
+		<action name="index" class="top.kuvip.wll.blog.action.UserAction"
+			method="index">
+			<result name="index">/WEB-INF/jsp/admin/index.jsp</result>
+		</action>
+
+		<action name="login" class="top.kuvip.wll.blog.action.UserAction"
+			method="login">
+			<result name="toLogin1">/WEB-INF/jsp/admin/login.jsp</result>
+			<result name="index">/WEB-INF/jsp/admin/index.jsp</result>
+		</action>
+		<action name="essay*"
+			class="top.kuvip.wll.blog.admin.action.EssayUploadAction" method="{1}">
+			<result name="essayadmin">/WEB-INF/jsp/admin/essayadmin.jsp</result>
+			<result name="essayadd">/WEB-INF/jsp/admin/essayadd.jsp</result>
+			<result name="essayedit">/WEB-INF/jsp/admin/essayedit.jsp</result>
+		</action>
+		<action name="mood*" class="top.kuvip.wll.blog.admin.action.MoodUploadAction"
+			method="{1}">
+			<result name="moodlist">/WEB-INF/jsp/admin/moodlist.jsp</result>
+			<result name="moodadd">/WEB-INF/jsp/admin/moodadd.jsp</result>
+			<result name="moodadmin">/WEB-INF/jsp/admin/moodadmin.jsp</result>
+			<result name="moodedit">/WEB-INF/jsp/admin/moodedit.jsp</result>
+		</action>
+		<!-- 配置说说上传的Action -->
+		<action name="moodUpload" class="top.kuvip.wll.blog.admin.action.MoodUploadAction">
+			<param name="htmlsavePath">/knowledge/static</param>
+			<param name="picsavePath">/knowledge/static/images</param>
+			<param name="savePath">/webfile/images</param>
+			<result name="moodAdd">/WEB-INF/jsp/admin/moodadd.jsp
+			</result>
+		</action>
+		<!-- 配置文章上传的Action -->
+		<action name="essayUpload"
+			class="top.kuvip.wll.blog.admin.action.EssayUploadAction">
+			<param name="savePath">/webfile/images</param>
+			<result name="essayAdd">/WEB-INF/jsp/admin/essayadd.jsp
+			</result>
+		</action>
+	</package>
+
+</struts>
+	
