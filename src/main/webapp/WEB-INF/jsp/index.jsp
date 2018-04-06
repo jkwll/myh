@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>吴亮亮的个人博客</title>
+<title>吴亮亮的个人博客9</title>
 <meta name="keywords" content="个人博客模板,博客模板" />
 <meta name="description" content="吴亮亮个人博客-分享java技术的个人博客网站" />
 <link rel="stylesheet"

@@ -216,6 +216,7 @@ public class EssayUploadAction extends ActionSupport
 	}
 
 	@Override
+	//默认执行这个方法
 	public String execute() throws Exception
 	{
 		Date date = new Date();
@@ -372,18 +373,30 @@ public class EssayUploadAction extends ActionSupport
 		ActionContext.getContext().put("essay", es.getById(essay_id));
 	}
 	/**
-	 * 文章添加用到的方法
+	 * essayadd.jsp页面加载，用到的方法
 	 * @return
 	 */
 	public String add(){
 		List<EssayType> etlist  = ets.getAllEssayType();
+		
 		for (EssayType essayType : etlist) {			
 			System.out.println("essayType.getName()" + essayType.getName());
 		}
 		ActionContext.getContext().put("etList", etlist);
 		return "essayadd";
 	}
-
-	
+/**
+ * test
+ * @return
+ */
+		public String add2(){
+		List<EssayType> etlist  = ets.getAllEssayType();
+		
+		for (EssayType essayType : etlist) {			
+			System.out.println("essayType.getName()" + essayType.getName());
+		}
+		ActionContext.getContext().put("etList", etlist);
+		return "essayadd2";
+	}
 	
 }

@@ -2,8 +2,8 @@
   <!DOCTYPE struts PUBLIC
 	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
-
 <struts>
+
 	<!-- 设置该应用使用的字符集 -->
 	<constant name="struts.i18n.encoding" value="utf-8" />
 	<!-- 后缀名 默认action <constant name="struts.action.extension" value="action"></constant> -->
@@ -157,6 +157,8 @@
 			class="top.kuvip.wll.blog.admin.action.EssayUploadAction" method="{1}">
 			<result name="essayadmin">/WEB-INF/jsp/admin/essayadmin.jsp</result>
 			<result name="essayadd">/WEB-INF/jsp/admin/essayadd.jsp</result>
+			<!-- test -->
+			<result name="essayadd2">/WEB-INF/jsp/admin/essayadd2.jsp</result>
 			<result name="essayedit">/WEB-INF/jsp/admin/essayedit.jsp</result>
 		</action>
 		<action name="mood*" class="top.kuvip.wll.blog.admin.action.MoodUploadAction"
