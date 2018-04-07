@@ -10,7 +10,7 @@
 	<!-- 读取db.properties文件123 -->
 	<context:property-placeholder location="classpath:db.properties" />
 	<!-- 开启扫描类中的注解115 -->
-	<context:component-scan base-package="top.kuvip.wll"></context:component-scan>
+	<context:component-scan base-package="top.wull"></context:component-scan>
 	<!-- 配置c3p0连接池 -->
 	<bean name="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<property name="jdbcUrl" value="${jdbc.jdbcUrl}"></property>
@@ -27,7 +27,7 @@
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
 		<property name="packagesToScan">
-			<value>top.kuvip.wll.blog.antity</value>
+			<value>top.wull.blog.antity</value>
 		</property>
 		<property name="hibernateProperties">
 			<props>
@@ -52,12 +52,12 @@
 		<property name="annotatedClasses">
 			<list>
 				<!-- 以下用来列出Hibernate的持久化类 -->
-				<value>top.kuvip.wll.blog.antity.LeaveWord</value>
-				<value>top.kuvip.wll.blog.antity.Mood</value>
-				<value>top.kuvip.wll.blog.antity.EssayType</value>
-				<value>top.kuvip.wll.blog.antity.Essay</value>
-				<value>top.kuvip.wll.blog.antity.User</value>
-				<value>top.kuvip.wll.blog.antity.Statistics</value>
+				<value>top.wull.blog.antity.LeaveWord</value>
+				<value>top.wull.blog.antity.Mood</value>
+				<value>top.wull.blog.antity.EssayType</value>
+				<value>top.wull.blog.antity.Essay</value>
+				<value>top.wull.blog.antity.User</value>
+				<value>top.wull.blog.antity.Statistics</value>
 			</list>
 		</property>
 		<!-- <property name="mappingDirectoryLocations" value="classpath:top/kuvip/wll/blog/antity" 
