@@ -2,25 +2,21 @@
   <!DOCTYPE struts PUBLIC
 	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
-<struts>
 
+<struts>
 	<!-- 设置该应用使用的字符集 -->
 	<constant name="struts.i18n.encoding" value="utf-8" />
 	<!-- 后缀名 默认action <constant name="struts.action.extension" value="action"></constant> -->
-
 	<!-- # struts.objectFactory = spring 将action的创建交给spring容器 struts.objectFactory.spring.autoWire 
 		= name spring负责装配Action依赖属性 -->
 	<constant name="struts.objectFactory" value="spring"></constant>
-
+	
 	<package name="page" namespace="/" extends="struts-default">
-
 		<!-- 配置首页菜单的Action -->
 		<action name="" class="top.wull.blog.action.IndexAction"
 			method="list">
 			<result name="list">/WEB-INF/jsp/index.jsp</result>
 		</action>
-
-
 		<action name="index" class="top.wull.blog.action.IndexAction"
 			method="list">
 			<result name="list">/WEB-INF/jsp/index.jsp</result>
@@ -29,28 +25,29 @@
 			method="addCount">
 			<result name="addCount"></result>
 		</action>
-		<action name="search" class="top.wull.blog.action.EssayAction"
-			method="search">
-			<result name="show">/WEB-INF/jsp/knowledge.jsp</result>
-		</action>
-
-		<action name="life" class="top.wull.blog.action.LifeAction"
+		<action name="life1" class="top.wull.blog.action.LifeAction"
+			method="toLife">
+			<result name="list">/WEB-INF/jsp/life.jsp</result>
+		</action> 
+<!-- 为什么  name="life" 不行？？？包括下面的knowledge
+ 		<action name="life" class="top.wull.blog.action.LifeAction"
 			method="toLife">
 			<result name="list">/WEB-INF/jsp/life.jsp</result>
 		</action>
-		<action name="mood" class="top.wull.blog.action.MoodAction"
+ -->
+ 		<action name="mood" class="top.wull.blog.action.MoodAction"
 			method="mood">
 			<result name="moodlist">/WEB-INF/jsp/moodlist.jsp</result>
 		</action>
-		<action name="knowledge" class="top.wull.blog.action.KnowledgeAction"
+		<action name="knowledge1" class="top.wull.blog.action.KnowledgeAction"
 			method="toKnowledge">
 			<result name="list">/WEB-INF/jsp/knowledge.jsp</result>
 		</action>
-		<action name="leaveword" class="top.wull.blog.action.LeaveWordAction"
+ 		<action name="leaveword" class="top.wull.blog.action.LeaveWordAction"
 			method="leaveword">
 			<result name="leaveword">/WEB-INF/jsp/leaveword.jsp</result>
 		</action>
-		<action name="about" class="top.wull.blog.action.PageAction"
+ 		<action name="about" class="top.wull.blog.action.PageAction"
 			method="about">
 			<result name="about">/WEB-INF/jsp/about.jsp</result>
 		</action>
@@ -58,9 +55,14 @@
 			method="about">
 			<result name="about">/WEB-INF/jsp/tool.jsp</result>
 		</action>
-
+	<!-- 根据关键字和文章标题查询文章列表-->		
+		<action name="search" class="top.wull.blog.action.EssayAction"
+			method="search">
+			<result name="show">/WEB-INF/jsp/knowledge.jsp</result>
+		</action>
+		
 	</package>
-	<!-- 查看文章和按照分类搜索文章 -->
+	<!-- 根据文章类型，分类查询文章列表-->				
 	<package name="knowledge" namespace="/knowledge" extends="struts-default">
 		<action name="select*" class="top.wull.blog.action.EssayTypeAction"
 			method="select">
@@ -121,11 +123,10 @@
 			<!-- 注册拦截器 -->
 			<interceptor name="privilegeInterceptor"
 				class="top.wull.blog.interceptor.PrivilegeInterceptor"></interceptor>
-			<!-- 配置拦截器栈 -->
+			<!-- 配置拦截器栈，拦截admin的package下的所有路径 -->
 			<interceptor-stack name="myStack">
 				<interceptor-ref name="defaultStack"></interceptor-ref>
 				<interceptor-ref name="privilegeInterceptor">
-
 				</interceptor-ref>
 			</interceptor-stack>
 		</interceptors>
@@ -139,6 +140,7 @@
 			<exception-mapping result="error"
 				exception="java.lang.RuntimeException"></exception-mapping>
 		</global-exception-mappings>
+		
 		<action name="toLogin" class="top.wull.blog.action.UserAction"
 			method="toLogin">
 			<result name="toLogin">/WEB-INF/jsp/admin/login.jsp</result>
@@ -157,8 +159,6 @@
 			class="top.wull.blog.admin.action.EssayUploadAction" method="{1}">
 			<result name="essayadmin">/WEB-INF/jsp/admin/essayadmin.jsp</result>
 			<result name="essayadd">/WEB-INF/jsp/admin/essayadd.jsp</result>
-			<!-- test -->
-			<result name="essayadd2">/WEB-INF/jsp/admin/essayadd2.jsp</result>
 			<result name="essayedit">/WEB-INF/jsp/admin/essayedit.jsp</result>
 		</action>
 		<action name="mood*" class="top.wull.blog.admin.action.MoodUploadAction"

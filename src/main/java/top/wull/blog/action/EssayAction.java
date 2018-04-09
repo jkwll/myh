@@ -108,6 +108,7 @@ public class EssayAction extends BaseAction{
 		return null;
 	}
 	/*
+	 * 
 	 * 文章搜索
 	 */
 	public String search() throws Exception{
@@ -119,10 +120,8 @@ public class EssayAction extends BaseAction{
 		dc.addOrder(Order.asc("time"));
 		PageBean pb = es.getPageBean(dc,currentPage,pageSize);
 		ActionContext.getContext().put("pageBean", pb);
-		System.out.println("characters-----------"+characters);
 		
 		//用到了session缓存、同一台浏览器，对应用一个session，这里说明用户已经是第二次访问这里了
-				//关于详细介绍，查看笔记本
 				if(ActionContext.getContext().getSession().get("EssayType")!=null){
 					System.out.println("111111zheliddd+ActionContext.getContext().getSession()"+ActionContext.getContext().getSession());
 					//运行这里不不用查询数据库

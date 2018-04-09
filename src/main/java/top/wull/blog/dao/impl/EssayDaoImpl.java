@@ -77,9 +77,9 @@ public class EssayDaoImpl extends BaseDaoImpl<Essay> implements EssayDao {
 		// TODO Auto-generated method stub
 		
 	}
+	
 	public Essay getByUrl(String url) {
 		// TODO Auto-generated method stub
-		System.out.println("------------1111111111");
 		Session session = getSessionFactory().getCurrentSession();
 		Criteria criteria = session.createCriteria(Essay.class);
 		criteria.add(Restrictions.eq("url",url));

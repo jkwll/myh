@@ -10,7 +10,6 @@ public class KnowledgeAction extends EssayAction  {
 	public String toKnowledge() throws Exception {
 		//父类方法已经查询
 		 showEssay(1); 
-			System.out.println("ssssssssssssssssssss");		 
 		 return "list";
 	}	
 }
