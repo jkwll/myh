@@ -171,18 +171,17 @@ private String content;
 	}
 	
 	@Override
-	public String execute() throws Exception
-	{String luepicSrc="";
+	public String execute() throws Exception{
+	String luepicSrc="";
 	String luepicsrc="";
 	if( ! uploadContentType.substring(0,"image".length()).equals("image")){
 		ActionContext.getContext().put("prompt_message", "发布失败，上传的文件不是图片！");
 		return "moodAdd";
 	}
-	
 		if(this.uploadFileName!=null){
 			// 以服务器的文件保存地址和原文件名建立上传文件输出流
 			FileOutputStream fos = new FileOutputStream(getSavePath()
-				+ "\\" + getUploadFileName());
+				+ "/" + getUploadFileName());
 			FileInputStream fis = new FileInputStream(getUpload());
 			byte[] buffer = new byte[1024];
 			int len = 0;
@@ -203,7 +202,6 @@ private String content;
 			//保存到数据库中的相对路径
 			luepicsrc = this.savePath.substring(1,this.savePath.length())+"/"+filename;//   webfile/images/113801a7cee.jpg
 			luepicSrc = picSrc.substring(0, picSrc.length()-uploadFileName.length())+ filename;
-			
 			PictureChangeSize.compressImage(picSrc, luepicSrc, 500);
 		}
 		Integer f = null;
@@ -277,7 +275,7 @@ private String content;
 			// 以服务器的文件保存地址和原文件名建立上传文件输出流
 			String picsrc = ServletActionContext.getServletContext().getRealPath("/webfile/images");//D:\tomcat8\webapps\blog\webfile\images
 			FileOutputStream fos = new FileOutputStream(picsrc+
-					 "\\" + getUploadFileName());
+					 "/" + getUploadFileName());
 			FileInputStream fis = new FileInputStream(getUpload());
 			byte[] buffer = new byte[1024];
 			int len = 0;

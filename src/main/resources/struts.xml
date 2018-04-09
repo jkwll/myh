@@ -29,12 +29,12 @@
 			method="toLife">
 			<result name="list">/WEB-INF/jsp/life.jsp</result>
 		</action> 
-<!-- 为什么  name="life" 不行？？？包括下面的knowledge
+<!-- 为什么  name="life" 不行？？？包括下面的knowledge -->
  		<action name="life" class="top.wull.blog.action.LifeAction"
 			method="toLife">
 			<result name="list">/WEB-INF/jsp/life.jsp</result>
 		</action>
- -->
+
  		<action name="mood" class="top.wull.blog.action.MoodAction"
 			method="mood">
 			<result name="moodlist">/WEB-INF/jsp/moodlist.jsp</result>
@@ -74,7 +74,7 @@
 			<result name="look">/knowledge/{1}.jsp</result>
 		</action>
 	</package>
-	<package name="life" namespace="/life" extends="struts-default">
+<!-- 	<package name="life" namespace="/life1222" extends="struts-default">
 		<action name="select*" class="top.wull.blog.action.EssayTypeAction"
 			method="select">
 			<result name="show">/WEB-INF/jsp/life.jsp</result>
@@ -84,7 +84,7 @@
 			<result name="look">/life/{1}.jsp</result>
 		</action>
 	</package>
-	<!-- 提交留言的Action -->
+ -->	<!-- 提交留言的Action -->
 	<package name="laveword" namespace="/" extends="struts-default">
 		<action name="submit" class="top.wull.blog.action.LeaveWordAction"
 			method="save">
