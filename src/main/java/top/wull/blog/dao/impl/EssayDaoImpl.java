@@ -14,13 +14,17 @@ import top.wull.blog.dao.EssayDao;
 import top.wull.common.dao.impl.BaseDaoImpl;
 
 @Repository("essayDao")
+@SuppressWarnings("unchecked")
 public class EssayDaoImpl extends BaseDaoImpl<Essay> implements EssayDao {
-	public void update(String picsrc){
-		Essay essay = (Essay)getHibernateTemplate().get(Essay.class, 1);
+	
+/*	public void update(String picsrc){
+		Essay essay = getHibernateTemplate().get(Essay.class, 1);
 		Integer n  = essay.getCount();
 		essay.setCount(++n);
-		 getHibernateTemplate().update(essay);  
+		getHibernateTemplate().update(essay);  
 	}
+*/	
+	//通过url，将此url对应的essay行conunt添加一
 	public void updateByURL(String url) {
 		// TODO Auto-generated method stub
 		Criteria criteria = getHibernateTemplate().getSessionFactory().
@@ -51,11 +55,10 @@ public class EssayDaoImpl extends BaseDaoImpl<Essay> implements EssayDao {
 			Criteria criteria = session.createCriteria(Essay.class);
 			criteria.addOrder(Order.desc("count"));
 			criteria.setMaxResults(5);
-			 List<Essay> elist =criteria.list();
-			 return elist;
+			List<Essay> elist =criteria.list();
+			return elist;
 	}
-
-	public List getNewsEssay(Integer i) {
+	public List<Essay> getNewsEssay(Integer i) {
 		Session session = getSessionFactory().getCurrentSession();
 		Criteria criteria = session.createCriteria(Essay.class);
 		criteria.setMaxResults(i);
@@ -67,12 +70,7 @@ public class EssayDaoImpl extends BaseDaoImpl<Essay> implements EssayDao {
 		Session session = getSessionFactory().getCurrentSession();
 		Criteria criteria = session.createCriteria(Essay.class);
 		criteria.add(Restrictions.eq("essayType",et));
-		System.out.println("------------1111111111");
 		List<Essay> elist = criteria.list();
-		for (Essay essay : elist) {
-			System.out.println("------------" + essay.toString());
-		}
-
 		return elist;
 		// TODO Auto-generated method stub
 		
@@ -108,7 +106,6 @@ public class EssayDaoImpl extends BaseDaoImpl<Essay> implements EssayDao {
 		}else{
 			 sql = "UPDATE essay SET title = '"+essay.getTitle()+"', flag="+essay.getFlag()+", introduction='"+essay.getIntroduction()+"' WHERE essay_id = '"+essay.getEssay_id()+"'";			
 		}
-
 		getSessionFactory().getCurrentSession().createSQLQuery(sql).executeUpdate();	
 	}
 	

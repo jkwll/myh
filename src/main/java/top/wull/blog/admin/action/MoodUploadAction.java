@@ -166,18 +166,22 @@ private String content;
 		return "moodadd";
 	}
 	public String Upload() {
-		System.out.println("madebi");
 		return "moodadd";
 	}
-	
+	/**
+	 * 上传说说（处理文字加图片）
+	 */
 	@Override
 	public String execute() throws Exception{
-	String luepicSrc="";
-	String luepicsrc="";
-	if( ! uploadContentType.substring(0,"image".length()).equals("image")){
-		ActionContext.getContext().put("prompt_message", "发布失败，上传的文件不是图片！");
-		return "moodAdd";
-	}
+		//略缩图实际的位置
+		String luepicSrc="";
+		//保存到数据库的位置
+		String luepicsrc="";
+		//前端页面已经限制只能图片
+		if( ! uploadContentType.substring(0,"image".length()).equals("image")){
+			ActionContext.getContext().put("prompt_message", "发布失败，上传的文件不是图片！");
+			return "moodAdd";
+		}
 		if(this.uploadFileName!=null){
 			// 以服务器的文件保存地址和原文件名建立上传文件输出流
 			FileOutputStream fos = new FileOutputStream(getSavePath()
@@ -190,17 +194,18 @@ private String content;
 				fos.write(buffer , 0 , len);
 			}
 			fos.close();
-			
-			//略缩图
-			picsrc = this.savePath.substring(1,this.savePath.length())+"/"+getUploadFileName();//   webfile/images/113801a7cee.jpg
+			//原图相对路径
+			picsrc = this.savePath+"/"+getUploadFileName();//  savePath=/webfile/images
 			//获取项目路径D:\tomcat8\webapps\blog
 			String crSrc = ServletActionContext.getServletContext().getRealPath(File.separator);
-			//未压缩图片真实路径D:\tomcat8\webapps\blog/webfile/images/113801a7cee.jpg
-			String picSrc = crSrc +"\\"+ picsrc;
+			//未压缩图片真实路径Windows路径D:\tomcat8\webapps\blog /webfile/images/113801a7cee.jpg
+			String picSrc = crSrc + picsrc;
 			int length  =uploadFileName.lastIndexOf(".");
-			String filename = uploadFileName.subSequence(0,length )+"lue"+uploadFileName.subSequence(length,uploadFileName.length()) ;
-			//保存到数据库中的相对路径
-			luepicsrc = this.savePath.substring(1,this.savePath.length())+"/"+filename;//   webfile/images/113801a7cee.jpg
+			String filename = uploadFileName.subSequence(0,length )+"lue"+uploadFileName.subSequence(length,uploadFileName.length());
+			//保存到数据库中的略缩图的相对路径字符
+		    //   webfile/images/113801a7cee.jpg
+			luepicsrc = this.savePath.substring(1,this.savePath.length())+"/"+filename;
+			//略缩图实际输出的位置
 			luepicSrc = picSrc.substring(0, picSrc.length()-uploadFileName.length())+ filename;
 			PictureChangeSize.compressImage(picSrc, luepicSrc, 500);
 		}

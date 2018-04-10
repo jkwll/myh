@@ -200,6 +200,7 @@
 			        <password>16229</password>
 			        <update>true</update>
 			        <path>/blog</path>
+			        <port>9099</port>
  			</configuration>
 		    </plugin>
 			<plugin>
