@@ -9,6 +9,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.util.Date;
 import java.util.List;
@@ -241,17 +242,83 @@ public class EssayUploadAction extends ActionSupport
 			fos.close();		
 			picsrc = sqlurl+"static\\images\\"+getPicFileName();
 		}
+		
 		String str = getContent();	
-		System.out.println("html=====" + str);
-		addjsp(str,sqlurl);
+		//addjsp(str,sqlurl);
+		/***
+str==<p>我是一个中国人</p>
+retrunjsp(str,sqlurl)==<%@ page contentType="text/html; charset=utf-8" language="java"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>。。。
+		 */
+		content =retrunjsp(str,sqlurl);
+		//System.out.println("str=="+str);
+		//System.out.println("retrunjsp(str,sqlurl)=="+retrunjsp(str,sqlurl));
 		EssayType et  = ets.getById(Integer.parseInt(this.essayType));	
-		essay = new Essay(null, title, date, editor, introduction, et,picsrc, jspFilesrc, keywords,flag, null, null,null,0);
+		essay = new Essay( essay_id,  title,  date,  editor,  introduction,  et,
+				 picsrc,  content,  sqlurl,  keywords,  flag,  0,  0,
+				 0,  0);
         this.essay.setEssayType(et);
         this.es.addEssay(this.essay);
         System.out.println("\n" + this.toString() + "\n\n" + this.essay.toString());
 		return "essayAdd";
 	}
-
+	//返回jsp文件的代码 保存在数据库。此方法不通用，待进一步开发
+	public String retrunjsp(String str,String sqlurl) throws IOException{
+		//自动生成jsp
+		 InputStreamReader isr ;
+		 if(sqlurl.equals("knowledge/")){
+			 isr = new InputStreamReader(new FileInputStream(ServletActionContext.getServletContext().getRealPath("/")+"knowledge/knowledgebase.jsp"), "utf-8");			 
+		 }else{
+			 isr = new InputStreamReader(new FileInputStream(ServletActionContext.getServletContext().getRealPath("/")+"life/lifebase.jsp"), "utf-8");			 
+		 }
+		char[] cbuf = new char[10];
+		int hasRead = 0;
+		String wstr = new String();
+		//读取base.jsp文件
+		while ( (hasRead = isr.read(cbuf) )> 0) // 这里一次读取32个字符char，每次运行fr.read(cbuf)，起点就会后移32个字符
+		{
+			wstr = wstr + new String(cbuf , 0 , hasRead );
+		}
+		//设置jsp页面的title
+		int n = wstr.indexOf("</title>");
+		wstr = wstr.substring(0, n) + title + wstr.substring(n, wstr.length());
+		//初始化输入
+		String url = ServletActionContext.getServletContext().getRealPath("/")+sqlurl+jspName+".jsp";
+		/*File jspfile = new File(url);
+		FileOutputStream jspfos = new FileOutputStream(jspfile);
+		OutputStreamWriter  osw = new OutputStreamWriter(jspfos,"UTF-8");//初始化输出流
+		if (!jspfile.exists()) {
+			jspfile.createNewFile();
+		}*/
+		///处理页面传来的 str   保证能够找到图片，如果有值，就在前面添加${ pageContext.request.contextPath }/
+		String[] s = str.split("ueditor/jsp/upload");
+		str = "";
+		n = s.length;
+		for(int i = 0 ; i < s.length-1; i++){
+			s[i]=s[i]+"${ pageContext.request.contextPath }/ueditor/jsp/upload";
+			str =str+s[i];
+		}		
+		str = str +s[s.length-1];
+		//让<img> 居中
+		n = str.indexOf("<img src");
+		while(n!=-1){
+			int m = str.indexOf(">", n);
+			str = str.substring(0, n)
+			+"<div align=\"center\">" + str.substring(n, m+1) 
+			+ "</div>" + str.substring(m+1,str.length());			
+			n = str.indexOf("<img src",m+1);
+		}
+		n = wstr.indexOf("text123");
+		wstr = wstr.substring(0, n)+str+wstr.substring(n+"text123".length(), wstr.length());
+		return wstr;
+	}
+/**
+ * 弃用
+ * @param str 文章的html内容
+ * @param sqlurl 保存在数据库中的url
+ * @return
+ * @throws IOException
+ */
 	public String addjsp(String str,String sqlurl) throws IOException{
 		//自动生成jsp
 		 this.jspFilesrc = String.valueOf(this.sqlurl) + this.jspName+".action";

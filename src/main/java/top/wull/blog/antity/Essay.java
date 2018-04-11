@@ -36,6 +36,8 @@ public class Essay implements Comparable<Essay>{
 	@Cascade(CascadeType.ALL)
 	EssayType essayType;
 	String picsrc;
+	@Column(name="content" ,length=1000*1000)
+	String content;
 	String url;
 	String keywords;
 	Integer flag;
@@ -44,9 +46,21 @@ public class Essay implements Comparable<Essay>{
 	Integer recommend;
 	Integer count;
 	
+	
+
+	@Override
+	public String toString() {
+		return "Essay [essay_id=" + essay_id + ", title=" + title + ", time=" + time + ", editor=" + editor
+				+ ", introduction=" + introduction + ", essayType=" + essayType + ", picsrc=" + picsrc + ", content="
+				+ content + ", url=" + url + ", keywords=" + keywords + ", flag=" + flag + ", ding=" + ding + ", cai="
+				+ cai + ", recommend=" + recommend + ", count=" + count + "]";
+	}
+
+
+
 	public Essay(Integer essay_id, String title, Date time, String editor, String introduction, EssayType essayType,
-			String picsrc, String url, String keywords, Integer flag, Integer ding, Integer cai, Integer recommend,
-			Integer count) {
+			String picsrc, String content, String url, String keywords, Integer flag, Integer ding, Integer cai,
+			Integer recommend, Integer count) {
 		super();
 		this.essay_id = essay_id;
 		this.title = title;
@@ -55,6 +69,7 @@ public class Essay implements Comparable<Essay>{
 		this.introduction = introduction;
 		this.essayType = essayType;
 		this.picsrc = picsrc;
+		this.content = content;
 		this.url = url;
 		this.keywords = keywords;
 		this.flag = flag;
@@ -65,19 +80,21 @@ public class Essay implements Comparable<Essay>{
 	}
 
 
-	@Override
-	public String toString() {
-		return "Essay [essay_id=" + essay_id + ", title=" + title + ", time=" + time + ", editor=" + editor
-				+ ", introduction=" + introduction + ", essayType=" + essayType + ", picsrc=" + picsrc + ", url=" + url
-				+ ", keywords=" + keywords + ", flag=" + flag + ", ding=" + ding + ", cai=" + cai + ", recommend="
-				+ recommend + ", count=" + count + "]";
-	}
-
 
 	public Essay(){}
 
 
 	
+	public String getContent() {
+		return content;
+	}
+
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+
 	public String getKeywords() {
 		return keywords;
 	}
