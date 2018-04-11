@@ -223,15 +223,15 @@ public class EssayUploadAction extends ActionSupport
 		Date date = new Date();
         if (this.flag == 1) {
             this.sqlurl = "knowledge/";
-            this.picsavePath = String.valueOf(ServletActionContext.getServletContext().getRealPath("/")) + "knowledge\\static\\images";
+            this.picsavePath = String.valueOf(ServletActionContext.getServletContext().getRealPath("/")) + "knowledge/static/images";
         } else if (this.flag == 2) {
             this.sqlurl = "life/";
-            this.picsavePath = String.valueOf(ServletActionContext.getServletContext().getRealPath("/")) + "life\\static\\images";
+            this.picsavePath = String.valueOf(ServletActionContext.getServletContext().getRealPath("/")) + "life/static/images";
         }
 		//保存图片${pageContext.request.contextPath }
 		if(this.picFileName!=null){
 			FileOutputStream fos = new FileOutputStream(picsavePath
-				+ "\\" + getPicFileName());
+				+ "/" + getPicFileName());
 			FileInputStream fis = new FileInputStream(getPic());
 			byte[] buffer = new byte[1024];
 			int len = 0;
@@ -240,7 +240,7 @@ public class EssayUploadAction extends ActionSupport
 				fos.write(buffer , 0 , len);
 			}
 			fos.close();		
-			picsrc = sqlurl+"static\\images\\"+getPicFileName();
+			picsrc = sqlurl+"static/images/"+getPicFileName();
 		}
 		
 		String str = getContent();	
@@ -253,9 +253,10 @@ retrunjsp(str,sqlurl)==<%@ page contentType="text/html; charset=utf-8" language=
 		content =retrunjsp(str,sqlurl);
 		//System.out.println("str=="+str);
 		//System.out.println("retrunjsp(str,sqlurl)=="+retrunjsp(str,sqlurl));
-		EssayType et  = ets.getById(Integer.parseInt(this.essayType));	
-		essay = new Essay( essay_id,  title,  date,  editor,  introduction,  et,
-				 picsrc,  content,  sqlurl,  keywords,  flag,  0,  0,
+		EssayType et  = ets.getById(Integer.parseInt(this.essayType));
+		Integer maxId  =es.getMaxEssayId();
+		essay = new Essay( maxId+1,  title,  date,  editor,  introduction,  et,
+				 picsrc,  content,  sqlurl+(maxId+1),  keywords,  flag,  0,  0,
 				 0,  0);
         this.essay.setEssayType(et);
         this.es.addEssay(this.essay);

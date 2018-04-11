@@ -1,4 +1,10 @@
 package top.wull.blog.action;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -86,21 +92,43 @@ public class EssayAction extends BaseAction{
 		//ServletActionContext.getRequest().setCharacterEncoding("UTF-8");
 		//这里不支持中文，所以jsp的名字暂时不能为中文
 		String url = ServletActionContext.getRequest().getRequestURI();
+		//两个文章类型 位置
 		int n = url.indexOf("knowledge");
 		if(n == -1 ){
 		 n = url.indexOf("life");			
 		}
+		// url=knowledge/id
 		url = url.substring(n, url.length());
 		//查询文章信息
 		Essay essay = es.getByUrl(url);
+		//如果数据库有这个数据
 		if(essay!=null){
 			//浏览次数+1 
-			es.updateEssayCount(url);			
+			es.updateEssayCount(url);
+			String path = ServletActionContext.getServletContext().getRealPath("/");
+			System.out.println("path=="+path);
+			File jspfile=new File(path+essay.getUrl()+".jsp");    
+			//如果文件系统里面没有这个jsp文件（第一次访问），就在文件系统里面新建jsp文件
+			if(!jspfile.exists()) 
+			{    
+			    try {    
+			    	//根据数据库essay新建文件
+			    	FileOutputStream jspfos = new FileOutputStream(jspfile);
+					OutputStreamWriter  osw = new OutputStreamWriter(jspfos,"UTF-8");//初始化输出流
+					jspfile.createNewFile();
+					String wstr = essay.getContent();
+					osw.write(wstr);
+					osw.close();		
+			    } catch (IOException e) {    
+			        // TODO Auto-generated catch block    
+			        e.printStackTrace();    
+			    }    
+			}    
+
 		}
 		ActionContext.getContext().put("EssayType", getEssayType(Integer.valueOf(essay.getEssayType().getFlag())));
-
 		ActionContext.getContext().put("lookEssay", essay);
-		if(es.getByUrl(url)!=null){
+		if(essay!=null){
 			ActionContext.getContext().put("newEssaylist", newEssaylist(6));
 			ActionContext.getContext().put("showMaxCountEssay", showMaxCountEssay());
 			return "look";

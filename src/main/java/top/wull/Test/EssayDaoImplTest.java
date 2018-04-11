@@ -11,6 +11,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import top.wull.blog.antity.Essay;
 import top.wull.blog.antity.EssayType;
 import top.wull.blog.dao.EssayDao;
+import top.wull.blog.dao.impl.EssayDaoImpl;
 import top.wull.common.dao.impl.BaseDaoImpl;
 
 public class EssayDaoImplTest extends BaseDaoImpl<Essay> implements EssayDao{
@@ -21,7 +22,6 @@ public class EssayDaoImplTest extends BaseDaoImpl<Essay> implements EssayDao{
 		//fail("Not yet implemented");
 		Session session= sessionFactory.openSession();
 		session.beginTransaction();
-		System.out.println("1111111111111111" );
 		Query query = session.createQuery("from Essay");            
 		//query.setCacheable(true);  
 		List<Essay> list = query.list();
@@ -29,6 +29,12 @@ public class EssayDaoImplTest extends BaseDaoImpl<Essay> implements EssayDao{
 		System.out.println("11111111111" );
 		f();
 
+	}
+	@Test
+	public void te(){
+
+		EssayDaoImpl edi = new EssayDaoImpl();
+		edi.getMaxEssayId();
 	}
 	public void f(){
 		Session session2= sessionFactory.openSession();
@@ -68,6 +74,10 @@ public class EssayDaoImplTest extends BaseDaoImpl<Essay> implements EssayDao{
 	public void updateById(Essay e) {
 		// TODO Auto-generated method stub
 		
+	}
+	public Integer getMaxEssayId() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

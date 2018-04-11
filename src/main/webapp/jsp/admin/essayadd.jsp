@@ -118,12 +118,12 @@
 				<td><input type="text" name="keywords"
 					class="easyui-validatebox" data-options="required:true" /></td>
 			</tr>
-			<tr>
+<!-- 			<tr>
 				<td width="200">jsp名字</td>
 				<td><input type="text" name="jspName"
 					class="easyui-validatebox" data-options="required:true" /></td>
 			</tr>
-
+ -->
 			<tr>
 				<td width="200">文章内容（html）</td>
 				<td><input type="file" name="htmlFile" multiple

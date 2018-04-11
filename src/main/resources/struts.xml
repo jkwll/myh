@@ -174,8 +174,7 @@
 			<param name="htmlsavePath">/knowledge/static</param>
 			<param name="picsavePath">/knowledge/static/images</param>
 			<param name="savePath">/webfile/images</param>
-			<result name="moodAdd">/WEB-INF/jsp/admin/moodadd.jsp
-			</result>
+			<result name="moodAdd">/WEB-INF/jsp/admin/moodadd.jsp</result>
 		</action>
 		<!-- 配置文章上传的Action -->
 		<action name="essayUpload"

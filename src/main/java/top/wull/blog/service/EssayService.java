@@ -23,4 +23,5 @@ public interface EssayService {
 	public void updateEssayCount(String url);
 	public void updateById(Essay e);
 	public  Essay getById(Integer essay_id);
+	public Integer getMaxEssayId();
 }

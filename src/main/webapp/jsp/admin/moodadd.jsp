@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>后台登录-X-admin1.1</title>
+<title>添加说说</title>
 <!-- 导入jquery核心类库 -->
 <script type="text/javascript"
 	src="${pageContext.request.contextPath }/admin/js/jquery-1.8.3.js"></script>
@@ -75,7 +75,7 @@
 
 					<table class="table-edit" width="40%">
 						<tr>
-							<td>内容：</td>
+							<td>内容1：</td>
 							<td><input type="text" name="content" class="layui-input"
 								label="内容" /></td>
 						</tr>

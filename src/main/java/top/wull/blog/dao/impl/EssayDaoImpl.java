@@ -3,6 +3,7 @@ package top.wull.blog.dao.impl;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
@@ -107,6 +108,14 @@ public class EssayDaoImpl extends BaseDaoImpl<Essay> implements EssayDao {
 			 sql = "UPDATE essay SET title = '"+essay.getTitle()+"', flag="+essay.getFlag()+", introduction='"+essay.getIntroduction()+"' WHERE essay_id = '"+essay.getEssay_id()+"'";			
 		}
 		getSessionFactory().getCurrentSession().createSQLQuery(sql).executeUpdate();	
+	}
+	
+	public Integer getMaxEssayId() {
+		// TODO Auto-generated method stub
+		//getSessionFactory().getCurrentSession().createSQLQuery(sql).executeUpdate();	
+		String sql = "SELECT MAX(essay_id) FROM essay";
+		SQLQuery q =getSessionFactory().getCurrentSession().createSQLQuery(sql);
+		return (Integer) q.list().get(0);		
 	}
 	
 

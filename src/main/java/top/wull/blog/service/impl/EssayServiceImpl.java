@@ -96,6 +96,12 @@ public class EssayServiceImpl implements EssayService{
 		return ed.getById(essay_id);
 	}
 
+	public Integer getMaxEssayId() {
+		return ed.getMaxEssayId();
+		// TODO Auto-generated method stub
+		
+	}
+
 
 
 }

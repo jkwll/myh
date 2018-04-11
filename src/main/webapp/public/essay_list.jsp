@@ -21,7 +21,7 @@
 				<s:property value="#e.introduction" />
 			</p>
 
-			<a href="<s:property value="#e.url+#e.essay_id" />" class="readmore">详细信息>></a>
+			<a href="<s:property value="#e.url" />" class="readmore">详细信息>></a>
 		</ul>
 		<div class="line"></div>
 	</s:iterator>
