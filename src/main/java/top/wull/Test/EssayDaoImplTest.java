@@ -51,7 +51,7 @@ public class EssayDaoImplTest extends BaseDaoImpl<Essay> implements EssayDao{
 		return null;
 	}
 
-	public void updateByURL(String url) {
+	public void updateEssayCountByURL(String url) {
 		// TODO Auto-generated method stub
 		
 	}

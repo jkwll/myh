@@ -61,7 +61,7 @@ public class IndexAction extends BaseAction {
 		ActionContext.getContext().put("newEssaylist", newEssaylist(8));			
 		ActionContext.getContext().put("showMaxCountEssay", showMaxCountEssay());		
 		ActionContext.getContext().put("pageBean", pb);
-		System.out.println(pb.toString());
+		System.out.println("dddddd");
 		return "list";
 	}
 	//主页的最新动态

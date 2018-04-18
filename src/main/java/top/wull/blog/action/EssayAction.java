@@ -67,7 +67,7 @@ public class EssayAction extends BaseAction{
 		//es.getPageBean2(currentPage, pageSize);
 		ActionContext.getContext().put("pageBean", pb);
 		ActionContext.getContext().put("EssayType", getEssayType(i));
-
+System.out.println("pb=="+pb.toString());
 		//用到了session缓存、同一台浏览器，对应用一个session，这里说明用户已经是第二次访问这里了
 
 		//关于详细介绍，查看笔记本
@@ -81,6 +81,7 @@ public class EssayAction extends BaseAction{
 			ActionContext.getContext().put("EssayType", getEssayType(i));
 		}	*/	
 		commonSelect();
+		System.out.println("sdfsdf");
 		return "list";
 	}
 	public void commonSelect() throws Exception{
@@ -116,7 +117,7 @@ public class EssayAction extends BaseAction{
 			    	FileOutputStream jspfos = new FileOutputStream(jspfile);
 					OutputStreamWriter  osw = new OutputStreamWriter(jspfos,"UTF-8");//初始化输出流
 					jspfile.createNewFile();
-					String wstr = essay.getContent();
+					String wstr = essay.getEssayDesc().getContent();
 					osw.write(wstr);
 					osw.close();		
 			    } catch (IOException e) {    
@@ -131,6 +132,9 @@ public class EssayAction extends BaseAction{
 		if(essay!=null){
 			ActionContext.getContext().put("newEssaylist", newEssaylist(6));
 			ActionContext.getContext().put("showMaxCountEssay", showMaxCountEssay());
+
+
+
 			return "look";
 		}
 		return null;
@@ -176,7 +180,7 @@ public class EssayAction extends BaseAction{
 	 * @return
 	 */
 	public String addCount(){
-		es.updateByURL(url);
+		es.updateEssayCountByURL(url);
 		return "essayadd";
 	}
 	public String test(){

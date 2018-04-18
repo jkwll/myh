@@ -28,6 +28,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import top.wull.blog.antity.Essay;
+import top.wull.blog.antity.EssayDesc;
 import top.wull.blog.antity.EssayType;
 import top.wull.blog.antity.Mood;
 import top.wull.blog.antity.Statistics;
@@ -255,8 +256,11 @@ retrunjsp(str,sqlurl)==<%@ page contentType="text/html; charset=utf-8" language=
 		//System.out.println("retrunjsp(str,sqlurl)=="+retrunjsp(str,sqlurl));
 		EssayType et  = ets.getById(Integer.parseInt(this.essayType));
 		Integer maxId  =es.getMaxEssayId();
+		EssayDesc ed = new EssayDesc();
+		ed.setEssay_id(maxId+1);
+		ed.setContent(content);		
 		essay = new Essay( maxId+1,  title,  date,  editor,  introduction,  et,
-				 picsrc,  content,  sqlurl+(maxId+1),  keywords,  flag,  0,  0,
+				 picsrc,  ed,  sqlurl+(maxId+1),  keywords,  flag,  0,  0,
 				 0,  0);
         this.essay.setEssayType(et);
         this.es.addEssay(this.essay);

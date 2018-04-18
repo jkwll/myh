@@ -3,8 +3,10 @@ package top.wull.blog.dao.impl;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
@@ -26,16 +28,24 @@ public class EssayDaoImpl extends BaseDaoImpl<Essay> implements EssayDao {
 	}
 */	
 	//通过url，将此url对应的essay行conunt添加一
-	public void updateByURL(String url) {
+	public void updateEssayCountByURL(String url) {
 		// TODO Auto-generated method stub
-		Criteria criteria = getHibernateTemplate().getSessionFactory().
+/*		Criteria criteria = getHibernateTemplate().getSessionFactory().
 				openSession().createCriteria(Essay.class);		
 		criteria.add(Restrictions.eq("url",url));
 		Essay essay = (Essay) criteria.list().get(0);
 		Integer n = essay.getCount();
 		essay.setCount(++n);
 		update(essay);
-	}
+*/
+/*		Transaction trans=getHibernateTemplate().getSessionFactory().getCurrentSession().beginTransaction();
+		String hql = "update Essay essay set essay.count=essay.count+'1' where essay.url='"+url+"'";	
+		Query query =getHibernateTemplate().getSessionFactory().getCurrentSession().createQuery(hql);
+		int i = query.executeUpdate();
+		System.out.println("i=="+i);
+		trans.commit();
+*/
+		}
 
 	public List<Essay> getMaxCountEssay() {
 		/*
@@ -86,17 +96,18 @@ public class EssayDaoImpl extends BaseDaoImpl<Essay> implements EssayDao {
 	}
 	//每次点击文章Count添加一次
 	public void updateEssayCount(String url) {
-		Session session = getSessionFactory().getCurrentSession();
+/*		Session session = getSessionFactory().getCurrentSession();
 		Criteria criteria = session.createCriteria(Essay.class);
 		System.out.println(url);
 		criteria.add(Restrictions.eq("url",url));
 		Essay essay = (Essay) criteria.list().get(0);
-		//String hql = "UPDATE Essay e SET e.count =123456 WHERE e.essay_id = 58";
-		String sql = "UPDATE essay SET count = "+(essay.getCount()+1)+" WHERE essay_id = "+essay.getEssay_id();
+*/		//String hql = "UPDATE Essay e SET e.count =123456 WHERE e.essay_id = 58";
+		//String sql = "UPDATE essay SET count = "+(essay.getCount()+1)+" WHERE url = "+url;
+		String sql = "UPDATE essay SET count = count+1 WHERE url = '"+url+"'";
+		System.out.println("这里");
 		//getSessionFactory().openSession().createSQLQuery(sql).executeUpdate();用他，多次运行就卡死 session没有关闭,需要手动关闭，如果不关闭将导致session关联的数据库连接无法释放，最后资源耗尽而使程序当掉。
 		//getSessionFactory().openSession().close();
 		getSessionFactory().getCurrentSession().createSQLQuery(sql).executeUpdate();
-		
 	}
 	public void updateById(Essay essay) {
 		// TODO Auto-generated method stub

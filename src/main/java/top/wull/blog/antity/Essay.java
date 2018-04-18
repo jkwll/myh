@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
@@ -36,8 +38,13 @@ public class Essay implements Comparable<Essay>{
 	@Cascade(CascadeType.ALL)
 	EssayType essayType;
 	String picsrc;
-	@Column(name="content" ,length=1000*1000)
-	String content;
+	//定义该Essay关联外键EssayType
+	@OneToOne(targetEntity=EssayDesc.class)
+	//@JoinColumn(name="essayDesc_id" , nullable=false)
+	//共享主键
+	@PrimaryKeyJoinColumn 
+	@Cascade(CascadeType.ALL)//表示联级操作，文章id改了，EssayDesc的essay_id也改
+	EssayDesc essayDesc;
 	String url;
 	String keywords;
 	Integer flag;
@@ -46,20 +53,10 @@ public class Essay implements Comparable<Essay>{
 	Integer recommend;
 	Integer count;
 	
-	
-
-	@Override
-	public String toString() {
-		return "Essay [essay_id=" + essay_id + ", title=" + title + ", time=" + time + ", editor=" + editor
-				+ ", introduction=" + introduction + ", essayType=" + essayType + ", picsrc=" + picsrc + ", content="
-				+ content + ", url=" + url + ", keywords=" + keywords + ", flag=" + flag + ", ding=" + ding + ", cai="
-				+ cai + ", recommend=" + recommend + ", count=" + count + "]";
-	}
-
-
+	public Essay(){}
 
 	public Essay(Integer essay_id, String title, Date time, String editor, String introduction, EssayType essayType,
-			String picsrc, String content, String url, String keywords, Integer flag, Integer ding, Integer cai,
+			String picsrc, EssayDesc essayDesc, String url, String keywords, Integer flag, Integer ding, Integer cai,
 			Integer recommend, Integer count) {
 		super();
 		this.essay_id = essay_id;
@@ -69,7 +66,7 @@ public class Essay implements Comparable<Essay>{
 		this.introduction = introduction;
 		this.essayType = essayType;
 		this.picsrc = picsrc;
-		this.content = content;
+		this.essayDesc = essayDesc;
 		this.url = url;
 		this.keywords = keywords;
 		this.flag = flag;
@@ -79,21 +76,13 @@ public class Essay implements Comparable<Essay>{
 		this.count = count;
 	}
 
-
-
-	public Essay(){}
-
-
-	
-	public String getContent() {
-		return content;
+	public EssayDesc getEssayDesc() {
+		return essayDesc;
 	}
 
-
-	public void setContent(String content) {
-		this.content = content;
+	public void setEssayDesc(EssayDesc essayDesc) {
+		this.essayDesc = essayDesc;
 	}
-
 
 	public String getKeywords() {
 		return keywords;
