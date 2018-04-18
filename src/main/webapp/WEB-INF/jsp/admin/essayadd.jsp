@@ -52,7 +52,7 @@
 	<s:form action="essayUpload" method="post"
 		enctype="multipart/form-data">
 		<input type="hidden" name="functionIds">
-		<table class="table-edit" width="40%">
+		<table class="table-edit" width="30%">
 			<tr class="title">
 				<td colspan="2">文章信息</td>
 				<td></td>
