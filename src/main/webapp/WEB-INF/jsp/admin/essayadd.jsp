@@ -141,10 +141,8 @@
 			<tr>
 				<td colspan="2" align="center"><input type="submit" value="发表"></input></td>
 			</tr>
-
-
 		</table>
-		<div class="edit" style="width: 710px">
+		<div class="edit" style="width: 910px">
 			<!-- 加载编辑器的容器 -->
 			<script id="container" name="content" type="text/plain">
   				            		这里是文章的内容

@@ -11,7 +11,9 @@
 	rel="stylesheet">
 <link href="${pageContext.request.contextPath }/css/learn.css"
 	rel="stylesheet">
-<%-- 搜索 --%>
+<%-- <link href="${pageContext.request.contextPath }/css/learn.css"
+	rel="stylesheet">
+ --%><%-- 搜索 --%>
 <link href="${ pageContext.request.contextPath }/css/bootstrap.min.css"
 	rel="stylesheet">
 <%-- 换页 --%>
