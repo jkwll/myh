@@ -3,7 +3,7 @@
 <html>
 <head>
 <%@ include file="/public/include.jsp"%>
-<title></title>
+<title>11111111</title>
 </head>
 <body>
 	<%@ include file="/public/header.jsp"%>
@@ -13,13 +13,13 @@
 		<div class="index_about">
 			<%-- 文章标题 --%>
 			<%@ include file="/public/title.jsp"%>
-			<div class="book left" style="width: 96.553%">
+			<div class="book left">
 				<%-- 正文 --%>
-				text123
+				<p>tomcat我们走！<br/></p>
 				<%@ include file="/public/lower.jsp"%>
 			</div>
 		</div>
-		<%@ include file="/public/life_right.jsp"%>
+		<%@ include file="/public/knowledge_right.jsp"%>
 	</article>
 	<%@ include file="/public/info.jsp"%>
 	<script

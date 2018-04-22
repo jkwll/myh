@@ -50,7 +50,6 @@
 						</p>
 					</div>
 					<span class="dateview"><s:property value="#m.time" /></span>
-					回复内容：111
 				</ul>
 			</s:iterator>
 

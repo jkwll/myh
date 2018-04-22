@@ -75,7 +75,6 @@ public class MoodAction extends ActionSupport {
 		this.currentPage = currentPage;
 	}
 	public String mood(){
-		
 		//封装离线查询对象
 		DetachedCriteria dc = DetachedCriteria.forClass(Mood.class);
 		//判断并封装参数
@@ -87,8 +86,9 @@ public class MoodAction extends ActionSupport {
 			Mood mood = (Mood) pb.getList().get(i);
 			String src = mood.getPicsrc();
 			//防止没有图片导致空指针异常
-			if(src!=null){
-				mood.setHpicsrc(src.substring(0, src.lastIndexOf(".")-"lue".length()) + src.substring(src.lastIndexOf(".")) );
+			if(src!=null && !src.equals("")){
+				mood.setHpicsrc(src.substring(0, src.lastIndexOf(".")-"lue".length()) +
+						src.substring(src.lastIndexOf(".")) );
 			}
 		}
 

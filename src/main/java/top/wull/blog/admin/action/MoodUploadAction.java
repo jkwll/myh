@@ -176,13 +176,14 @@ private String content;
 		//略缩图实际的位置
 		String luepicSrc="";
 		//保存到数据库的位置
-		String luepicsrc="";
+		String luepicsrc=null;
 		//前端页面已经限制只能图片
-		if( ! uploadContentType.substring(0,"image".length()).equals("image")){
-			ActionContext.getContext().put("prompt_message", "发布失败，上传的文件不是图片！");
-			return "moodAdd";
-		}
+		
 		if(this.uploadFileName!=null){
+			if( ! uploadContentType.substring(0,"image".length()).equals("image")){
+				ActionContext.getContext().put("prompt_message", "发布失败，上传的文件不是图片！");
+				return "moodAdd";
+			}
 			// 以服务器的文件保存地址和原文件名建立上传文件输出流
 			FileOutputStream fos = new FileOutputStream(getSavePath()
 				+ "/" + getUploadFileName());
@@ -210,7 +211,7 @@ private String content;
 			PictureChangeSize.compressImage(picSrc, luepicSrc, 500);
 		}
 		Integer f = null;
-		//flag1：是否显示出来
+		//flag1：是否在前台显示出来
 		if(flag!=null&&flag.equals("on")){
 			 flag1 = 1;
 		}else{
