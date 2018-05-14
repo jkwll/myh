@@ -11,6 +11,7 @@ import org.csource.fastdfs.StorageClient;
 import org.csource.fastdfs.StorageServer;
 import org.csource.fastdfs.TrackerClient;
 import org.csource.fastdfs.TrackerServer;
+import org.junit.Test;
 
 public class FastDFSClient {
 	/**
@@ -19,7 +20,7 @@ public class FastDFSClient {
 	 * @return
 	 * @throws Exception
 	 */
-	 public String[] UploadFileByFastDFS(File file) throws Exception{  
+	 public static String[] UploadFileByFastDFS(File file) throws Exception{  
 //	      1、把FastDFS提供的jar包添加到工程中       
 //	      2、初始化全局配置。加载一个配置文件。  
 	        ClientGlobal.init("fdfs_client.conf");  

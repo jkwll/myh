@@ -28,13 +28,14 @@ public class Mood {
 	Integer flag;
 	
 
-	public Mood(Integer mood_id, String content, Date time, String picsrc, Integer flag) {
+	public Mood(Integer mood_id, String content, Date time, String picsrc,String hpicsrc, Integer flag) {
 		super();
 		this.mood_id = mood_id;
 		this.content = content;
 		this.time = time;
 		this.picsrc = picsrc;
 		this.flag = flag;
+		this.hpicsrc = hpicsrc;
 	}
 	public Mood(){}
 	public Integer getMood_id() {

@@ -177,9 +177,9 @@ private String content;
 	@Override
 	public String execute() throws Exception{
 		//略缩图实际的位置
-		String luepicSrc="";
-		//保存到数据库的位置
-		String luepicsrc=null;
+		String luePicSrc="";
+		//原始图片实际的位置
+		String hPicSrc="";
 		//前端页面已经限制只能图片
 		if(this.uploadFileName!=null){
 			if( ! uploadContentType.substring(0,"image".length()).equals("image")){
@@ -192,15 +192,15 @@ private String content;
 			// group1
         	// M00/00/00/wKiRhlrc2rWAKDQ9AAAANxIGZP8172.tmp
 			//这里upload的默认后缀名是.tmp
-			//File f  = new File(upload.getPath());
 			//String sn = upload.getName();
+			
 			//1.创建配置文件并得到对象输入流
 			InputStream is = this.getClass().getClassLoader().getResourceAsStream("fastdfs-client.properties");
 			//2.创建propetities
 			Properties jdbc = new Properties();
 			jdbc.load(is);
 			//3. 通过key-value 的方式得到对应的值
-			String crSrc = jdbc.getProperty("ip");
+			String ip = jdbc.getProperty("ip");
 			//upload.renameTo(uploadchangename);
 			//不知道怎么修改file path，下面解决upload的后缀名为tmp，改为保存原有的后缀名
 			//临时文件输出地址，输出文件到硬盘上
@@ -213,73 +213,34 @@ private String content;
 			}
 			fis.close();
 			fos.close();
+			
 			File file = new File(getUploadFileName());
-			String []  strings= fc.UploadFileByFastDFS(file);
-			//原图相对host的路径 /group1/M00/00/00/wKiRhlrc2rWAKDQ9AAAANxIGZP8172.txt
+			//原图路径
+			String []  hPicUrl= fc.UploadFileByFastDFS(file);
+			//原图相对host的路径 /group1/M00/00/00/wKiRhlrc2rWAKDQ9AAAANxIGZP8172.png
 			//这里路径可能会写死了。
-			picsrc = "/"+strings[0]+"/"+strings[1];//
-			//File tfile2 = new File("D://156156.png");
-			//获取图片路径 ip
-/*			Properties properties = new Properties();			
-			FileInputStream in = new FileInputStream("fastdfs-client.properties");
-			properties.load(in);
-			String crSrc = properties.getProperty("ip");
-*/
-			//未压缩图片真实路径Windows路径 ip /group1/M00/00/00/wKiRhlrc2rWAKDQ9AAAANxIGZP8172.txt
-			String picSrc = crSrc + picsrc;
-			int length  =uploadFileName.lastIndexOf(".");
-			String filename = uploadFileName.subSequence(0,length )+"lue"+uploadFileName.subSequence(length,uploadFileName.length());
-			//保存到数据库中的略缩图的相对路径字符
-			luepicsrc = picsrc;
-			//略缩图实际输出的位置
-			luepicSrc = picSrc.substring(0, picSrc.length()-uploadFileName.length())+ filename;
-			//PictureChangeSize.compressImage(picSrc, luepicSrc, 500);
+			//未压缩图片真实路径Windows路径   ip /group1/M00/00/00/wKiRhlrc2rWAKDQ9AAAANxIGZP8172.txt
+			hPicSrc = ip + "/"+hPicUrl[0]+"/"+hPicUrl[1];;			
+			
+			//压缩图片
 			File filelue = PictureChangeSize.compressImage2(file, 500);		
-			String []  strings2= fc.UploadFileByFastDFS(filelue);
+			String []  luePicUrl= fc.UploadFileByFastDFS(filelue);
 			System.out.println("---略缩图路径------");
-			 for(String string:strings2)  
+			luePicSrc = ip + "/"+luePicUrl[0]+"/"+luePicUrl[1];;			
+			 for(String string:luePicUrl)  
 		        {  
 		        	// group1
 		        	// M00/00/00/wKiRhlrc2rWAKDQ9AAAANxIGZP8172.txt
 		            System.out.println(string);  
 		        }  
-			/*
-			// 以服务器的文件保存地址和原文件名建立上传文件输出流
-			FileOutputStream fos = new FileOutputStream(getSavePath()
-				+ "/" + getUploadFileName());
-			FileInputStream fis = new FileInputStream(getUpload());
-			byte[] buffer = new byte[1024];
-			int len = 0;
-			//输出文件到硬盘上
-			while ((len = fis.read(buffer)) > 0){
-				fos.write(buffer , 0 , len);
-			}
-			fos.close();
-			
-			//原图相对路径
-			picsrc = this.savePath+"/"+getUploadFileName();//  savePath=/webfile/images
-			//获取项目路径D:\tomcat8\webapps\blog
-			String crSrc = ServletActionContext.getServletContext().getRealPath(File.separator);
-			//未压缩图片真实路径Windows路径D:\tomcat8\webapps\blog /webfile/images/113801a7cee.jpg
-			String picSrc = crSrc + picsrc;
-			int length  =uploadFileName.lastIndexOf(".");
-			String filename = uploadFileName.subSequence(0,length )+"lue"+uploadFileName.subSequence(length,uploadFileName.length());
-			//保存到数据库中的略缩图的相对路径字符
-		    //   webfile/images/113801a7cee.jpg
-			luepicsrc = this.savePath.substring(1,this.savePath.length())+"/"+filename;
-			//略缩图实际输出的位置
-			luepicSrc = picSrc.substring(0, picSrc.length()-uploadFileName.length())+ filename;
-			PictureChangeSize.compressImage(picSrc, luepicSrc, 500);
-			*/
 		}
-		Integer f = null;
-		//flag1：是否在前台显示出来
+		//是否在前台显示出来
 		if(flag!=null&&flag.equals("on")){
 			 flag1 = 1;
 		}else{
 			flag1=0;
 		}
-		mood = new Mood(null, content, new Date(), luepicsrc,flag1);
+		mood = new Mood(null, content, new Date(),luePicSrc, hPicSrc,flag1);
 		ms.addMood(mood);
 		ActionContext.getContext().put("prompt_message", "发布成功");
 		return "moodAdd";

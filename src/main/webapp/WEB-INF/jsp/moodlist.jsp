@@ -42,8 +42,9 @@
 				<ul class="arrow_box">
 					<div class="sy">
 						<s:if test="#m.picsrc!=null">
-							<a href="<s:property value="#m.hpicsrc" />"><img name="img"
-								src="<s:property value="#m.picsrc" />"></a>
+							<a href="http://<s:property value="#m.hpicsrc" />">
+								<img name="img" src="http://<s:property value="#m.picsrc" />">
+							</a>
 						</s:if>
 						<p>
 							<s:property value="#m.content" />

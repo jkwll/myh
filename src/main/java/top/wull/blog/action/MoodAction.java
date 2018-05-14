@@ -27,7 +27,6 @@ public class MoodAction extends ActionSupport {
 	Date time;
 	Mood mood;
 	
-	
 	private Integer currentPage = 1;
 	private Integer pageSize = 9;	
 	
@@ -84,13 +83,14 @@ public class MoodAction extends ActionSupport {
 		PageBean pb = ms.getPageBean(dc,currentPage,pageSize);
 		for (int i = 0 ;  i < pb.getList().size() ; i ++) {
 			Mood mood = (Mood) pb.getList().get(i);
-			String src = mood.getPicsrc();
+			//String src = mood.getPicsrc();
 			//防止没有图片导致空指针异常
-			if(src!=null && !src.equals("")){
+/*			if(src!=null && !src.equals("")){
 				mood.setHpicsrc(src.substring(0, src.lastIndexOf(".")-"lue".length()) +
 						src.substring(src.lastIndexOf(".")) );
 			}
-		}
+*/
+			}
 
 		ActionContext.getContext().put("pageBean", pb);
 		return "moodlist";//前台mood页面
