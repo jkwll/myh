@@ -19,7 +19,7 @@ public class FastDFSClient {
 	 * @return
 	 * @throws Exception
 	 */
-	 public String[] UploadFileByDFS(File file) throws Exception{  
+	 public String[] UploadFileByFastDFS(File file) throws Exception{  
 //	      1、把FastDFS提供的jar包添加到工程中       
 //	      2、初始化全局配置。加载一个配置文件。  
 	        ClientGlobal.init("fdfs_client.conf");  
@@ -37,13 +37,13 @@ public class FastDFSClient {
 	        String prefix=filename.substring(filename.lastIndexOf(".")+1);
 	        String[] strings=  storageClient.upload_file(File2byte(file), prefix, null);  
 	       // String returnstr="";
-	        for(String string:strings)  
+/*	        for(String string:strings)  
 	        {  
 	        	// group1
 	        	// M00/00/00/wKiRhlrc2rWAKDQ9AAAANxIGZP8172.txt
 	            System.out.println(string);  
 	        }  
-	        return strings;
+*/	        return strings;
 	  }
 	 public static byte[] File2byte(File file)
 	    {

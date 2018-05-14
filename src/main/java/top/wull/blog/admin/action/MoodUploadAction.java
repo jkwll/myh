@@ -4,8 +4,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Properties;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -26,6 +28,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import top.wull.blog.antity.Mood;
 import top.wull.blog.service.MoodService;
+import top.wull.blog.util.FastDFSClient;
 import top.wull.blog.util.PageBean;
 import top.wull.blog.util.PictureChangeSize;
 
@@ -39,7 +42,7 @@ private String picsrc;
 
 private Integer mood_id;
 private String content;
-	// 封装上传文件域的属性
+	// 封装上传文件域的属性 .tmp
 	private File upload;
 	// 封装上传文件类型的属性
 	private String uploadContentType; //image/png
@@ -178,12 +181,69 @@ private String content;
 		//保存到数据库的位置
 		String luepicsrc=null;
 		//前端页面已经限制只能图片
-		
 		if(this.uploadFileName!=null){
 			if( ! uploadContentType.substring(0,"image".length()).equals("image")){
 				ActionContext.getContext().put("prompt_message", "发布失败，上传的文件不是图片！");
 				return "moodAdd";
 			}
+			//使用fastDFS保存图片
+			FastDFSClient fc = new FastDFSClient();
+			//返回的是地址
+			// group1
+        	// M00/00/00/wKiRhlrc2rWAKDQ9AAAANxIGZP8172.tmp
+			//这里upload的默认后缀名是.tmp
+			//File f  = new File(upload.getPath());
+			//String sn = upload.getName();
+			//1.创建配置文件并得到对象输入流
+			InputStream is = this.getClass().getClassLoader().getResourceAsStream("fastdfs-client.properties");
+			//2.创建propetities
+			Properties jdbc = new Properties();
+			jdbc.load(is);
+			//3. 通过key-value 的方式得到对应的值
+			String crSrc = jdbc.getProperty("ip");
+			//upload.renameTo(uploadchangename);
+			//不知道怎么修改file path，下面解决upload的后缀名为tmp，改为保存原有的后缀名
+			//临时文件输出地址，输出文件到硬盘上
+			FileOutputStream fos = new FileOutputStream(getUploadFileName());
+			FileInputStream fis = new FileInputStream(getUpload());
+			byte[] buffer = new byte[1024];
+			int len = 0;
+			while ((len = fis.read(buffer)) > 0){
+				fos.write(buffer , 0 , len);
+			}
+			fis.close();
+			fos.close();
+			File file = new File(getUploadFileName());
+			String []  strings= fc.UploadFileByFastDFS(file);
+			//原图相对host的路径 /group1/M00/00/00/wKiRhlrc2rWAKDQ9AAAANxIGZP8172.txt
+			//这里路径可能会写死了。
+			picsrc = "/"+strings[0]+"/"+strings[1];//
+			//File tfile2 = new File("D://156156.png");
+			//获取图片路径 ip
+/*			Properties properties = new Properties();			
+			FileInputStream in = new FileInputStream("fastdfs-client.properties");
+			properties.load(in);
+			String crSrc = properties.getProperty("ip");
+*/
+			//未压缩图片真实路径Windows路径 ip /group1/M00/00/00/wKiRhlrc2rWAKDQ9AAAANxIGZP8172.txt
+			String picSrc = crSrc + picsrc;
+			int length  =uploadFileName.lastIndexOf(".");
+			String filename = uploadFileName.subSequence(0,length )+"lue"+uploadFileName.subSequence(length,uploadFileName.length());
+			//保存到数据库中的略缩图的相对路径字符
+			luepicsrc = picsrc;
+			//略缩图实际输出的位置
+			luepicSrc = picSrc.substring(0, picSrc.length()-uploadFileName.length())+ filename;
+			//PictureChangeSize.compressImage(picSrc, luepicSrc, 500);
+			File filelue = PictureChangeSize.compressImage2(file, 500);		
+			String []  strings2= fc.UploadFileByFastDFS(filelue);
+			System.out.println("---略缩图路径------");
+			 for(String string:strings2)  
+		        {  
+		        	// group1
+		        	// M00/00/00/wKiRhlrc2rWAKDQ9AAAANxIGZP8172.txt
+		            System.out.println(string);  
+		        }  
+			/*
 			// 以服务器的文件保存地址和原文件名建立上传文件输出流
 			FileOutputStream fos = new FileOutputStream(getSavePath()
 				+ "/" + getUploadFileName());
@@ -195,6 +255,7 @@ private String content;
 				fos.write(buffer , 0 , len);
 			}
 			fos.close();
+			
 			//原图相对路径
 			picsrc = this.savePath+"/"+getUploadFileName();//  savePath=/webfile/images
 			//获取项目路径D:\tomcat8\webapps\blog
@@ -209,6 +270,7 @@ private String content;
 			//略缩图实际输出的位置
 			luepicSrc = picSrc.substring(0, picSrc.length()-uploadFileName.length())+ filename;
 			PictureChangeSize.compressImage(picSrc, luepicSrc, 500);
+			*/
 		}
 		Integer f = null;
 		//flag1：是否在前台显示出来
