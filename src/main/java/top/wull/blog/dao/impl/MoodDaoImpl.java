@@ -30,25 +30,25 @@ public void showtest(){
 		String sqlR = " WHERE mood_id = '"+mood.getMood_id()+"'";
 		String sqlZ = "";
 		if(mood.getContent()!=null){
-			sqlZ = sql1;
+			sqlZ = sql1+",";
 		}
 		if(mood.getFlag()!=null){
-			sqlZ = sqlZ+sql2;
+			sqlZ = sqlZ+sql2+",";
 		}
 		if(mood.getPicsrc()!=null){
-			sqlZ = sqlZ+sql3;
+			sqlZ = sqlZ+sql3+",";
 		}
 		if(mood.getContent()!=null){
-			sqlZ = sqlZ+sql4;
+			sqlZ = sqlZ+sql4+",";
 		}	
 		if(mood.getHpicsrc()!=null){
-			sqlZ = sqlZ+sql5;
+			sqlZ = sqlZ+sql5+",";
 		}
 		if(mood.getTime()!=null){
-			sqlZ = sqlZ+sql6;
+			sqlZ = sqlZ+sql6+",";
 		}
 		if(!sqlZ.equals("")){
-		    sql = sqlL + sqlZ + sqlR;
+		    sql = sqlL + sqlZ.substring(0, sqlZ.length()-1) + sqlR;
 			getSessionFactory().getCurrentSession().createSQLQuery(sql).executeUpdate();					
 		}else{
 			System.out.println("拼sql异常");

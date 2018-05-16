@@ -11,20 +11,14 @@ import java.util.Date;
 import java.util.Properties;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 
-import org.apache.catalina.Context;
-import org.apache.catalina.connector.Response;
 import org.apache.struts2.ServletActionContext;
-import org.hibernate.annotations.Subselect;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
-import org.hibernate.engine.transaction.jta.platform.internal.SynchronizationRegistryBasedSynchronizationStrategy;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.opensymphony.xwork2.ActionChainResult;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -32,7 +26,6 @@ import top.wull.blog.antity.Mood;
 import top.wull.blog.service.MoodService;
 import top.wull.blog.util.FastDFSClient;
 import top.wull.blog.util.PageBean;
-import top.wull.blog.util.PictureChangeSize;
 
 @Controller("moodUploadAction")
 @Scope("prototype")
@@ -263,18 +256,7 @@ public class MoodUploadAction extends ActionSupport
 		ActionContext.getContext().put("pageBean", pb);
 		return "moodadmin";
 	}
-	public void selectmood(){
-		//封装离线查询对象
-		DetachedCriteria dc = DetachedCriteria.forClass(Mood.class);
-		dc.add(Restrictions.like("content","%"+mood_content+"%"));
-		System.out.println(" mood_content" +  mood_content);
-		//1 调用Service查询分页数据(PageBean)
-		PageBean pb = ms.getPageBean(dc,currentPage,pageSize);
-		ActionContext.getContext().put("pageBean",pb);
-	}
-	
 	public void updatemood() throws FileNotFoundException, Exception{
-
 		if(upload!=null&& ! uploadContentType.substring(0,"image".length()).equals("image")){
 			ActionContext.getContext().put("prompt_message", "发布失败，上传的文件不是图片！");
 		}
@@ -292,7 +274,15 @@ public class MoodUploadAction extends ActionSupport
 		m.setFlag(flag1);
 		//要更新图片的时候
 		if(upload!=null){
-			imageinit();			
+			FileOutputStream fos = new FileOutputStream(getUploadFileName());
+			FileInputStream fis = new FileInputStream(getUpload());
+			byte[] buffer = new byte[1024];
+			int len = 0;
+			while ((len = fis.read(buffer)) > 0){
+				fos.write(buffer , 0 , len);
+			}
+			fis.close();
+			fos.close();
 			File file = new File(getUploadFileName());
 			System.out.println("file.getName()1111 = " + file.getName());
 			String [] picUrl =  FastDFSClient.UploadImage(file);
@@ -305,6 +295,17 @@ public class MoodUploadAction extends ActionSupport
 		ms.updateById(m);
 		System.out.println("return moodlist");
 	}
+	public void selectmood(){
+		//封装离线查询对象
+		DetachedCriteria dc = DetachedCriteria.forClass(Mood.class);
+		dc.add(Restrictions.like("content","%"+mood_content+"%"));
+		System.out.println(" mood_content" +  mood_content);
+		//1 调用Service查询分页数据(PageBean)
+		PageBean pb = ms.getPageBean(dc,currentPage,pageSize);
+		ActionContext.getContext().put("pageBean",pb);
+	}
+	
+
 	public void editmood(){
 		ActionContext.getContext().put("mood", ms.getById(mood_id));
 	}
