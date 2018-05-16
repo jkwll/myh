@@ -32,7 +32,7 @@
 <!-- 为什么  name="life" 不行？？？包括下面的knowledge -->
  		<action name="life" class="top.wull.blog.action.LifeAction"
 			method="toLife">
-			<result name="list">/WEB-INF/jsp/life.jsp</result>
+			<result name="list2">/WEB-INF/jsp/life.jsp</result>
 		</action>
 
  		<action name="mood" class="top.wull.blog.action.MoodAction"
@@ -74,7 +74,7 @@
 			<result name="look">/knowledge/{1}.jsp</result>
 		</action>
 	</package>
-	<package name="life" namespace="/life" extends="struts-default">
+	<package name="life000" namespace="/life000" extends="struts-default">
 		<action name="select*" class="top.wull.blog.action.EssayTypeAction"
 			method="select">
 			<result name="show">/WEB-INF/jsp/life.jsp</result>
@@ -115,10 +115,7 @@
 		</action>
 	</package>
 
-
 	<!-- 配置后台的Action -->
-
-
 	<package name="admin" namespace="/admin" extends="struts-default">
 		<interceptors>
 			<!-- 注册拦截器 -->

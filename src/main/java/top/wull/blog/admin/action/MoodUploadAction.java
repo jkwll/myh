@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.catalina.Context;
 import org.apache.catalina.connector.Response;
 import org.apache.struts2.ServletActionContext;
+import org.hibernate.annotations.Subselect;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
@@ -35,13 +37,13 @@ import top.wull.blog.util.PictureChangeSize;
 @Controller("moodUploadAction")
 @Scope("prototype")
 public class MoodUploadAction extends ActionSupport
-{	@Resource(name="moodService")
-MoodService  ms ;
-Mood mood ;
-private String picsrc;
-
-private Integer mood_id;
-private String content;
+{	
+	@Resource(name="moodService")
+	MoodService  ms;
+	Mood mood;
+	private String picsrc;
+	private Integer mood_id;
+	private String content;
 	// 封装上传文件域的属性 .tmp
 	private File upload;
 	// 封装上传文件类型的属性
@@ -176,24 +178,16 @@ private String content;
 	 */
 	@Override
 	public String execute() throws Exception{
-		//略缩图实际的位置
-		String luePicSrc="";
-		//原始图片实际的位置
-		String hPicSrc="";
-		//前端页面已经限制只能图片
+		//picUrl[0] 表示hPicSrc 原图路径  ， picUrl[1] 表示luePicSrc 略缩图图
+		String[] picUrl = null;
 		if(this.uploadFileName!=null){
+			//前端页面已经限制只能图片
 			if( ! uploadContentType.substring(0,"image".length()).equals("image")){
 				ActionContext.getContext().put("prompt_message", "发布失败，上传的文件不是图片！");
 				return "moodAdd";
 			}
 			//使用fastDFS保存图片
-			FastDFSClient fc = new FastDFSClient();
-			//返回的是地址
-			// group1
-        	// M00/00/00/wKiRhlrc2rWAKDQ9AAAANxIGZP8172.tmp
-			//这里upload的默认后缀名是.tmp
-			//String sn = upload.getName();
-			
+			FastDFSClient fc = new FastDFSClient();			
 			//1.创建配置文件并得到对象输入流
 			InputStream is = this.getClass().getClassLoader().getResourceAsStream("fastdfs-client.properties");
 			//2.创建propetities
@@ -204,7 +198,8 @@ private String content;
 			//upload.renameTo(uploadchangename);
 			//不知道怎么修改file path，下面解决upload的后缀名为tmp，改为保存原有的后缀名
 			//临时文件输出地址，输出文件到硬盘上
-			FileOutputStream fos = new FileOutputStream(getUploadFileName());
+/*	不写的话，会出现找不到文件异常，，只能上传硬盘上已经有的图片。。尴尬。		
+ * FileOutputStream fos = new FileOutputStream(getUploadFileName());
 			FileInputStream fis = new FileInputStream(getUpload());
 			byte[] buffer = new byte[1024];
 			int len = 0;
@@ -213,26 +208,11 @@ private String content;
 			}
 			fis.close();
 			fos.close();
-			
+*/
+			imageinit();			
 			File file = new File(getUploadFileName());
-			//原图路径
-			String []  hPicUrl= fc.UploadFileByFastDFS(file);
-			//原图相对host的路径 /group1/M00/00/00/wKiRhlrc2rWAKDQ9AAAANxIGZP8172.png
-			//这里路径可能会写死了。
-			//未压缩图片真实路径Windows路径   ip /group1/M00/00/00/wKiRhlrc2rWAKDQ9AAAANxIGZP8172.txt
-			hPicSrc = ip + "/"+hPicUrl[0]+"/"+hPicUrl[1];;			
-			
-			//压缩图片
-			File filelue = PictureChangeSize.compressImage2(file, 500);		
-			String []  luePicUrl= fc.UploadFileByFastDFS(filelue);
-			System.out.println("---略缩图路径------");
-			luePicSrc = ip + "/"+luePicUrl[0]+"/"+luePicUrl[1];;			
-			 for(String string:luePicUrl)  
-		        {  
-		        	// group1
-		        	// M00/00/00/wKiRhlrc2rWAKDQ9AAAANxIGZP8172.txt
-		            System.out.println(string);  
-		        }  
+			System.out.println("file.getName() = " + file.getName());
+			picUrl =  FastDFSClient.UploadImage(file);			
 		}
 		//是否在前台显示出来
 		if(flag!=null&&flag.equals("on")){
@@ -240,10 +220,22 @@ private String content;
 		}else{
 			flag1=0;
 		}
-		mood = new Mood(null, content, new Date(),luePicSrc, hPicSrc,flag1);
+		
+		mood = new Mood(null, content, new Date(),picUrl[1], picUrl[0],flag1);
 		ms.addMood(mood);
-		ActionContext.getContext().put("prompt_message", "发布成功");
+		ActionContext.getContext().put("prompt_message", "发布成功！！");
 		return "moodAdd";
+	}
+	void imageinit() throws IOException{
+		FileOutputStream fos = new FileOutputStream(getUploadFileName());
+		FileInputStream fis = new FileInputStream(getUpload());
+		byte[] buffer = new byte[1024];
+		int len = 0;
+		while ((len = fis.read(buffer)) > 0){
+			fos.write(buffer , 0 , len);
+		}
+		fis.close();
+		fos.close();
 	}
 	/*
 	 * 后台对说说的操作
@@ -280,17 +272,16 @@ private String content;
 		PageBean pb = ms.getPageBean(dc,currentPage,pageSize);
 		ActionContext.getContext().put("pageBean",pb);
 	}
+	
 	public void updatemood() throws FileNotFoundException, Exception{
 
 		if(upload!=null&& ! uploadContentType.substring(0,"image".length()).equals("image")){
 			ActionContext.getContext().put("prompt_message", "发布失败，上传的文件不是图片！");
-			return ;
 		}
 		Mood m = new Mood();
 		m.setMood_id(mood_id);
 		m.setContent(content);
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");//小写的mm表示的是分钟  
-		//String dstr="2008-4-24";  
 		Date date=sdf.parse(time);  
 		m.setTime(date);
 		if(flag==null){
@@ -301,33 +292,18 @@ private String content;
 		m.setFlag(flag1);
 		//要更新图片的时候
 		if(upload!=null){
-			// 以服务器的文件保存地址和原文件名建立上传文件输出流
-			String picsrc = ServletActionContext.getServletContext().getRealPath("/webfile/images");//D:\tomcat8\webapps\blog\webfile\images
-			FileOutputStream fos = new FileOutputStream(picsrc+
-					 "/" + getUploadFileName());
-			FileInputStream fis = new FileInputStream(getUpload());
-			byte[] buffer = new byte[1024];
-			int len = 0;
-			while ((len = fis.read(buffer)) > 0)
-			{
-				fos.write(buffer , 0 , len);
-			}
-			fos.close();
-			//这里为什么没有读取struts.xml文件的配置属性savePath
-			String path = savePath;
-			//使用略缩图
-			String picsrc2 = ServletActionContext.getServletContext().getRealPath(File.separator)+"/webfile/images/"+getUploadFileName();//   webfile/images/113801a7cee.jpg
-			//获取项目路径D:\tomcat8\webapps\blog
-			int length  =uploadFileName.lastIndexOf(".");
-			String filename = uploadFileName.subSequence(0,length )+"lue"+uploadFileName.subSequence(length,uploadFileName.length()) ;
-			//保存到数据库中的相对路径
-			String luepicsrc ="/webfile/images".substring(1,"/webfile/images".length())+"/"+filename;//   webfile/images/113801a7cee.jpg
-			//真实的路径
-			String luepicSrc = picsrc2.substring(0, picsrc2.length()-uploadFileName.length())+ filename;
-			PictureChangeSize.compressImage(picsrc2, luepicSrc, 500);
-			m.setPicsrc(luepicsrc);						
+			imageinit();			
+			File file = new File(getUploadFileName());
+			System.out.println("file.getName()1111 = " + file.getName());
+			String [] picUrl =  FastDFSClient.UploadImage(file);
+			System.out.println("file.getName()2222 = " + file.getName());
+			m.setHpicsrc(picUrl[0]);
+			m.setPicsrc(picUrl[1]);
 		}
+		//make
+		//这里有问题。。。！！！返回页面有问题
 		ms.updateById(m);
+		System.out.println("return moodlist");
 	}
 	public void editmood(){
 		ActionContext.getContext().put("mood", ms.getById(mood_id));

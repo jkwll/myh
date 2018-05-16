@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 
 import org.csource.fastdfs.ClientGlobal;
 import org.csource.fastdfs.StorageClient;
@@ -46,6 +48,33 @@ public class FastDFSClient {
 	        }  
 */	        return strings;
 	  }
+	 /**
+	  * 上传图片，并且生成和保存压缩图片
+	  * @return
+	 * @throws Exception 
+	  */
+	 public static String[] UploadImage(File imgFile) throws Exception{
+	 	//1.创建配置文件并得到对象输入流
+		InputStream is = FastDFSClient.class.getClassLoader().getResourceAsStream("fastdfs-client.properties");
+	 	//2.创建propetities
+		Properties jdbc = new Properties();
+		jdbc.load(is);
+		//3. 通过key-value 的方式得到对应的值
+		String ip = jdbc.getProperty("ip");
+		System.out.println("file.getName() = " + imgFile.getName());
+		//原图路径
+		String []  hPicUrl= UploadFileByFastDFS(imgFile);
+		//这里路径可能会写太死了。
+		//原图图片真实路径Windows路径   ip /group1/M00/00/00/ wKiRhlrc2rWAKDQ9AAAANxIGZP8172.txt
+		String hPicSrc = ip + "/"+hPicUrl[0]+"/"+hPicUrl[1];			
+		//压缩图片
+		File filelue = PictureChangeSize.compressImage2(imgFile, 500);		
+		String []  luePicUrl= UploadFileByFastDFS(filelue);
+		String luePicSrc = ip + "/"+luePicUrl[0]+"/"+luePicUrl[1];
+		//高清，略缩图
+		String [] picSrc = {hPicSrc,luePicSrc};
+		return picSrc;
+	 }
 	 public static byte[] File2byte(File file)
 	    {
 	        byte[] buffer = null;
