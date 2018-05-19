@@ -323,7 +323,7 @@ retrunjsp(str,sqlurl)==<%@ page contentType="text/html; charset=utf-8" language=
  * @param sqlurl 保存在数据库中的url
  * @return
  * @throws IOException
- */
+
 	public String addjsp(String str,String sqlurl) throws IOException{
 		//自动生成jsp
 		 this.jspFilesrc = String.valueOf(this.sqlurl) + this.jspName+".action";
@@ -376,11 +376,10 @@ retrunjsp(str,sqlurl)==<%@ page contentType="text/html; charset=utf-8" language=
 		osw.close();		
 		return url;
 	}
-	
+	 */
 	public String admin() throws IOException{
 		//后台查询的时候
 		if(title!=null&&!title.equals("")&&introduction==null){
-			
 			selectessay();
 			return "essayadmin";
 		}
