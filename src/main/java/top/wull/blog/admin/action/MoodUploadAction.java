@@ -191,21 +191,8 @@ public class MoodUploadAction extends ActionSupport
 			//upload.renameTo(uploadchangename);
 			//不知道怎么修改file path，下面解决upload的后缀名为tmp，改为保存原有的后缀名
 			//临时文件输出地址，输出文件到硬盘上
-/*	不写的话，会出现找不到文件异常，，只能上传硬盘上已经有的图片。。尴尬。		
- * FileOutputStream fos = new FileOutputStream(getUploadFileName());
-			FileInputStream fis = new FileInputStream(getUpload());
-			byte[] buffer = new byte[1024];
-			int len = 0;
-			while ((len = fis.read(buffer)) > 0){
-				fos.write(buffer , 0 , len);
-			}
-			fis.close();
-			fos.close();
-*/
-			imageinit();			
-			File file = new File(getUploadFileName());
-			System.out.println("file.getName() = " + file.getName());
-			picUrl =  FastDFSClient.UploadImage(file);			
+			//上传图片
+			picUrl = FastDFSClient.upLoadImage(getUploadFileName(),getUpload());
 		}
 		//是否在前台显示出来
 		if(flag!=null&&flag.equals("on")){
@@ -275,7 +262,7 @@ public class MoodUploadAction extends ActionSupport
 		//要更新图片的时候
 		if(upload!=null){
 			//上传图片
-			String [] picUrl = upLoadImage(getUploadFileName(),getUpload());
+			String [] picUrl = FastDFSClient.upLoadImage(getUploadFileName(),getUpload());
 			m.setHpicsrc(picUrl[0]);
 			m.setPicsrc(picUrl[1]);
 		}
@@ -302,7 +289,7 @@ public class MoodUploadAction extends ActionSupport
 		}
 		fis.close();
 		fos.close();
-		File file = new File(getUploadFileName());
+		File file = new File(name);
 		String [] picUrl =  FastDFSClient.UploadImage(file);
 		return picUrl;
 	}

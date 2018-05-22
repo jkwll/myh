@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -16,6 +17,30 @@ import org.csource.fastdfs.TrackerServer;
 import org.junit.Test;
 
 public class FastDFSClient {
+	
+	/**
+	 * 
+	 * @param name 临时目录
+	 * @param file1 文件
+	 * @return String []  picUrl[0] 原图地址  picUrl[1] 略缩图地址  
+	 * @throws Exception
+	 */
+	//修改文件名字，由于上传图片类型是。tmp ，将图片文件临时放到硬盘上类型为 原来的类型
+	public static String [] upLoadImage(String name , File file1) throws Exception{
+		FileOutputStream fos = new FileOutputStream(name);
+		FileInputStream fis = new FileInputStream(file1);
+		byte[] buffer = new byte[1024];
+		int len = 0;
+		while ((len = fis.read(buffer)) > 0){
+			fos.write(buffer , 0 , len);
+		}
+		fis.close();
+		fos.close();
+		File file = new File(name);
+		String [] picUrl =  FastDFSClient.UploadImage(file);
+		return picUrl;
+	}
+	
 	/**
 	 * 将传入的文件通过dfs上传到服务器
 	 * @param file

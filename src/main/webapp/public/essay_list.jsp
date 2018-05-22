@@ -13,7 +13,7 @@
 		</p>
 		<figure>
 			<s:if test="#e.picsrc!=null">
-				<img name="img" src="<s:property value="#e.picsrc" />">
+				<img name="img" src="http://<s:property value="#e.picsrc" />">
 			</s:if>
 		</figure>
 		<ul class="nlist">
