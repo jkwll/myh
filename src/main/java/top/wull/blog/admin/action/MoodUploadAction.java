@@ -274,19 +274,8 @@ public class MoodUploadAction extends ActionSupport
 		m.setFlag(flag1);
 		//要更新图片的时候
 		if(upload!=null){
-			FileOutputStream fos = new FileOutputStream(getUploadFileName());
-			FileInputStream fis = new FileInputStream(getUpload());
-			byte[] buffer = new byte[1024];
-			int len = 0;
-			while ((len = fis.read(buffer)) > 0){
-				fos.write(buffer , 0 , len);
-			}
-			fis.close();
-			fos.close();
-			File file = new File(getUploadFileName());
-			System.out.println("file.getName()1111 = " + file.getName());
-			String [] picUrl =  FastDFSClient.UploadImage(file);
-			System.out.println("file.getName()2222 = " + file.getName());
+			//上传图片
+			String [] picUrl = upLoadImage(getUploadFileName(),getUpload());
 			m.setHpicsrc(picUrl[0]);
 			m.setPicsrc(picUrl[1]);
 		}
@@ -294,6 +283,28 @@ public class MoodUploadAction extends ActionSupport
 		//这里有问题。。。！！！返回页面有问题
 		ms.updateById(m);
 		System.out.println("return moodlist");
+	}
+	/**
+	 * 
+	 * @param name
+	 * @param file1
+	 * @return String []  picUrl[0] 原图地址  picUrl[1] 略缩图地址  
+	 * @throws Exception
+	 */
+	//修改文件名字，由于上传图片类型是。tmp ，将图片文件临时放到硬盘上类型为 原来的类型
+	String [] upLoadImage(String name , File file1) throws Exception{
+		FileOutputStream fos = new FileOutputStream(name);
+		FileInputStream fis = new FileInputStream(file1);
+		byte[] buffer = new byte[1024];
+		int len = 0;
+		while ((len = fis.read(buffer)) > 0){
+			fos.write(buffer , 0 , len);
+		}
+		fis.close();
+		fos.close();
+		File file = new File(getUploadFileName());
+		String [] picUrl =  FastDFSClient.UploadImage(file);
+		return picUrl;
 	}
 	public void selectmood(){
 		//封装离线查询对象
