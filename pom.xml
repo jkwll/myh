@@ -214,11 +214,13 @@
 				<path>/</path>
  -->
   			        <url>http://119.23.106.40:8081/manager/text</url>
-			        <username>admin</username>
-			        <password>16229</password>
+  			        <server>tomcat8</server>
+			        <username>tomcat</username>
+			        <password>tomcatpassword</password>
 			        <update>true</update>
 			        <path>/blog</path>
 			        <port>9099</port>
+			          <skipTests>true</skipTests>    
  			</configuration>
 		    </plugin>
 			<plugin>
@@ -228,6 +230,7 @@
 				<configuration>
 					<path>/</path>
 					<port>9099</port>
+					
 				</configuration>
 			</plugin>
 		</plugins>

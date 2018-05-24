@@ -3,6 +3,7 @@ package top.wull.blog.dao.impl;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.FlushMode;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
@@ -27,6 +28,7 @@ public class EssayDaoImpl extends BaseDaoImpl<Essay> implements EssayDao {
 		getHibernateTemplate().update(essay);  
 	}
 */	
+
 	//通过url，将此url对应的essay行conunt添加一
 	public void updateEssayCountByURL(String url) {
 		// TODO Auto-generated method stub
@@ -74,7 +76,7 @@ public class EssayDaoImpl extends BaseDaoImpl<Essay> implements EssayDao {
 		Criteria criteria = session.createCriteria(Essay.class);
 		criteria.setMaxResults(i);
 		criteria.addOrder(Order.desc("essay_id"));
-		List<Essay> elist =criteria.list();
+		List<Essay> elist = criteria.list();
 		return elist;
 	}
 	public  List<Essay> getEssayByEssayType(EssayType et) {
@@ -126,6 +128,9 @@ public class EssayDaoImpl extends BaseDaoImpl<Essay> implements EssayDao {
 		//getSessionFactory().getCurrentSession().createSQLQuery(sql).executeUpdate();	
 		String sql = "SELECT MAX(essay_id) FROM essay";
 		SQLQuery q =getSessionFactory().getCurrentSession().createSQLQuery(sql);
+		if( q.list().get(0) == null ){
+			return 0;
+		}
 		return (Integer) q.list().get(0);		
 	}
 	

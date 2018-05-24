@@ -32,6 +32,7 @@ import top.wull.blog.antity.EssayDesc;
 import top.wull.blog.antity.EssayType;
 import top.wull.blog.antity.Mood;
 import top.wull.blog.antity.Statistics;
+import top.wull.blog.service.EssayDescService;
 import top.wull.blog.service.EssayService;
 import top.wull.blog.service.EssayTypeService;
 import top.wull.blog.service.StatisticsService;
@@ -45,6 +46,8 @@ public class EssayUploadAction extends ActionSupport
 {	
 	@Resource(name="essayService")
 	EssayService  es ;
+	@Resource(name="essayDescService")
+	EssayDescService  eds ;
 	@Resource(name="essayTypeService")
 	EssayTypeService  ets ;
 	@Resource(name="statisticsService")
@@ -250,13 +253,15 @@ public class EssayUploadAction extends ActionSupport
 		String str = getContent();	
 		content =retrunjsp(str,sqlurl);
 		EssayType et  = ets.getById(Integer.parseInt(this.essayType));
-		Integer maxId  =es.getMaxEssayId();
+		Integer maxId = 0 ;
+		maxId  =es.getMaxEssayId();
 		EssayDesc ed = new EssayDesc();
 		ed.setEssay_id(maxId+1);
 		ed.setContent(content);		
+		eds.saveEssayDesc(ed);
+		
 		essay = new Essay( maxId+1,  title,  date,  editor,  introduction,  et,
-				picUrl[1],  ed,  sqlurl+(maxId+1),  keywords,  flag,  0,  0,
-				 0,  0);
+				picUrl[1],  sqlurl+(maxId+1),  keywords,  flag, 0,  0);
         this.essay.setEssayType(et);
         this.es.addEssay(this.essay);
         System.out.println("\n" + this.toString() + "\n\n" + this.essay.toString());

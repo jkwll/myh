@@ -1,7 +1,6 @@
 package top.wull.blog.antity;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,9 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Cascade;
@@ -26,38 +23,36 @@ public class Essay implements Comparable<Essay>{
 	//主键自增长 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	Integer essay_id;
-	String title;
-	Date time;
+	Integer count;
 	@Column(name="editor" ,length=20)
 	String editor;//编辑人
+	Integer flag;
 	@Column(name="introduction" ,length=1000)
 	String introduction ;//导语
+	String keywords;
+	String picsrc;
+	Integer recommend;
+	Date time;
+	String title;	
 	//定义该Essay关联外键EssayType
 	@ManyToOne(targetEntity=EssayType.class)
 	@JoinColumn(name="type_id" , nullable=false)
 	@Cascade(CascadeType.ALL)
 	EssayType essayType;
-	String picsrc;
-	//定义该Essay关联外键EssayType
-	@OneToOne(targetEntity=EssayDesc.class)
+	String url;
+	//String url;
+	
+	//定义该Essay关联外键EssayType。
+	//@OneToOne(targetEntity=EssayDesc.class)
 	//@JoinColumn(name="essayDesc_id" , nullable=false)
 	//共享主键
-	@PrimaryKeyJoinColumn 
+/*	@PrimaryKeyJoinColumn 
 	@Cascade(CascadeType.ALL)//表示联级操作，文章id改了，EssayDesc的essay_id也改
 	EssayDesc essayDesc;
-	String url;
-	String keywords;
-	Integer flag;
-	Integer ding;
-	Integer cai;
-	Integer recommend;
-	Integer count;
-	
+*/	
 	public Essay(){}
-
 	public Essay(Integer essay_id, String title, Date time, String editor, String introduction, EssayType essayType,
-			String picsrc, EssayDesc essayDesc, String url, String keywords, Integer flag, Integer ding, Integer cai,
-			Integer recommend, Integer count) {
+			String picsrc, String url, String keywords, Integer flag, Integer recommend, Integer count) {
 		super();
 		this.essay_id = essay_id;
 		this.title = title;
@@ -66,24 +61,22 @@ public class Essay implements Comparable<Essay>{
 		this.introduction = introduction;
 		this.essayType = essayType;
 		this.picsrc = picsrc;
-		this.essayDesc = essayDesc;
+		//this.essayDesc = essayDesc;
 		this.url = url;
 		this.keywords = keywords;
 		this.flag = flag;
-		this.ding = ding;
-		this.cai = cai;
 		this.recommend = recommend;
 		this.count = count;
 	}
 
-	public EssayDesc getEssayDesc() {
+/*	public EssayDesc getEssayDesc() {
 		return essayDesc;
 	}
 
 	public void setEssayDesc(EssayDesc essayDesc) {
 		this.essayDesc = essayDesc;
 	}
-
+*/
 	public String getKeywords() {
 		return keywords;
 	}
@@ -162,18 +155,6 @@ public class Essay implements Comparable<Essay>{
 	}
 	public void setFlag(Integer flag) {
 		this.flag = flag;
-	}
-	public Integer getDing() {
-		return ding;
-	}
-	public void setDing(Integer ding) {
-		this.ding = ding;
-	}
-	public Integer getCai() {
-		return cai;
-	}
-	public void setCai(Integer cai) {
-		this.cai = cai;
 	}
 	public int compareTo(Essay o) {
 		// TODO Auto-generated method stub

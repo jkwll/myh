@@ -19,8 +19,10 @@ import org.springframework.stereotype.Controller;
 import com.opensymphony.xwork2.ActionContext;
 
 import top.wull.blog.antity.Essay;
+import top.wull.blog.antity.EssayDesc;
 import top.wull.blog.antity.EssayType;
 import top.wull.blog.antity.Mood;
+import top.wull.blog.service.EssayDescService;
 import top.wull.blog.service.EssayService;
 import top.wull.blog.service.EssayTypeService;
 import top.wull.blog.util.PageBean;
@@ -31,6 +33,8 @@ public class EssayAction extends BaseAction{
 	EssayTypeService  ets ;
 	@Resource(name="essayService")
 	EssayService  es ;
+	@Resource(name="essayDescService")
+	EssayDescService eds;
 	Essay essay = new Essay();
 	String url;
 	String content;
@@ -117,7 +121,8 @@ System.out.println("pb=="+pb.toString());
 			    	FileOutputStream jspfos = new FileOutputStream(jspfile);
 					OutputStreamWriter  osw = new OutputStreamWriter(jspfos,"UTF-8");//初始化输出流
 					jspfile.createNewFile();
-					String wstr = essay.getEssayDesc().getContent();
+					EssayDesc ed = eds.getDescById(essay.getEssay_id());  
+					String wstr = ed.getContent();
 					osw.write(wstr);
 					osw.close();		
 			    } catch (IOException e) {    
