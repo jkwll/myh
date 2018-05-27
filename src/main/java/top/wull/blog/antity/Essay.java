@@ -39,6 +39,7 @@ public class Essay implements Comparable<Essay>{
 	@JoinColumn(name="type_id" , nullable=false)
 	@Cascade(CascadeType.ALL)
 	EssayType essayType;
+	
 	String url;
 	//String url;
 	

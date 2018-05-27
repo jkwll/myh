@@ -261,7 +261,7 @@ public class EssayUploadAction extends ActionSupport
 		eds.saveEssayDesc(ed);
 		
 		essay = new Essay( maxId+1,  title,  date,  editor,  introduction,  et,
-				picUrl[1],  sqlurl+(maxId+1),  keywords,  flag, 0,  0);
+				picUrl[1],  sqlurl+(maxId+1),  keywords,  flag, null,  0);
         this.essay.setEssayType(et);
         this.es.addEssay(this.essay);
         System.out.println("\n" + this.toString() + "\n\n" + this.essay.toString());
