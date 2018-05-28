@@ -181,6 +181,17 @@ public class AddressUtils {
   }
   return outBuffer.toString();
  }
+ /**
+  * 获取真实ip地址，防止是nginx代理的地址
+  * @param request
+  * @return
+  */
+ public String getRemortIP(HttpServletRequest request) { 
+	  if (request.getHeader("x-forwarded-for") == null) { 
+	   return request.getRemoteAddr(); 
+	  } 
+	  return request.getHeader("x-forwarded-for"); 
+	 } 
  // 测试
  public static void main(String[] args) {
   AddressUtils addressUtils = new AddressUtils();

@@ -49,20 +49,25 @@ public class URLFilter implements Filter {
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+		//如果是静态资源，直接放行
+	    HttpServletRequest httpreq = (HttpServletRequest) request;
+        StringBuffer url = httpreq.getRequestURL();
+		if(url.indexOf(".js")!=-1||url.indexOf(".css")!=-1||url.indexOf(".jpg")!=-1||url.indexOf(".png")!=-1||url.indexOf(".ico")!=-1){
+			chain.doFilter(request, response);
+		}
 		// TODO Auto-generated method stub
 		// place your code here
-	       HttpServletRequest httpreq = (HttpServletRequest) request;
-	        StringBuffer url = httpreq.getRequestURL();
-	        String ip = httpreq.getRemoteHost();
-
+	         //httpreq.getRemoteHost();这个可能是代理的地址
+	       // String ip =httpreq.getRemoteHost();
 	        //HttpServletResponse httpres = (HttpServletResponse) response;
-	        System.out.println("url:"+url);
-	        System.out.println("ip:"+ip);
 	        String urlStr = "http://ip.taobao.com/service/getIpInfo.php";
 	        AddressUtils au = new AddressUtils();
+	        String ip =au.getRemortIP(httpreq);
+        System.out.println("url:"+url);
+	        System.out.println("ip:"+ip);
 	        //获得地址
 	        String address = au.getAddresses("ip="+ip, "utf-8");
-	        String[] arrayStr = address.split(",");
+	        /*	  String[] arrayStr = address.split(",");
 	        String addressip = arrayStr[1].substring(14, arrayStr[1].length()-1);//地址
 	        String address1 = arrayStr[2].split(":")[1].replaceAll("\"", "");//国家
 	        String address2 = arrayStr[3].split(":")[1].replaceAll("\"", "");//或者地区
@@ -73,7 +78,7 @@ public class URLFilter implements Filter {
 	        System.out.println("ip:" +addressip );
 	        System.out.println("地址:" +address1+address2+address3+address4+address5);
 	        System.out.println("公司:" +address6 );
-
+*/
 	        ias.insertLog(address,url);
 
 		// pass the request along the filter chain

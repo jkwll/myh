@@ -31,7 +31,7 @@ public class IpDaoImpl extends BaseDaoImpl<IpAddress> implements IpDao {
         String isp = arrayStr[7].split(":")[1].replaceAll("\"", "");//公司
         System.out.println("ip:" +addressip );
         Date date = new Date();
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String date2 = format.format(date);
         String sql = "INSERT INTO IpAddress (code,ip,country,area,region,city,county,isp,url,time)VALUE('"+code+"','"+addressip+"','"+country+"','"+area+"','"+region+"','"+city+"','"+county+"','"+isp+"','"+url+"','"+date2+"')";
 		//Session session = getSessionFactory().getCurrentSession();
