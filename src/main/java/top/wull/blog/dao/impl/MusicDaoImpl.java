@@ -20,7 +20,6 @@ public class MusicDaoImpl extends BaseDaoImpl<Music> implements MusicDao {
 			return "";
 		}
 		return (String) q.list().get(0);		
-		//return "http://oru5gao7d.bkt.clouddn.com/BIGBANG%20-%20IF%20YOU.mp3";
 		}
 	
 	
