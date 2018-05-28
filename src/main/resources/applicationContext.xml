@@ -41,7 +41,10 @@
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
 		<property name="packagesToScan">
-			<value>top.wull.blog.antity</value>
+		<list>
+		<value>top.wull.blog.antity</value>
+		<value>top.wull.blog.util</value>
+		</list>
 		</property>
 		<property name="hibernateProperties">
 			<props>
@@ -73,6 +76,7 @@
 				<value>top.wull.blog.antity.EssayDesc</value>
 				<value>top.wull.blog.antity.User</value>
 				<value>top.wull.blog.antity.Music</value>
+				<value>top.wull.blog.antity.IpAddress</value>
 				<value>top.wull.blog.antity.Statistics</value>
 			</list>
 		</property>
