@@ -23,8 +23,8 @@
 	</article>
 	<%@ include file="/public/info.jsp"%>
 	<script
-		src="${ pageContext.request.contextPath }/knowledge/js/common.js"></script>
+		src="${ pageContext.request.contextPath }/js/common.js"></script>
 	<script
-		src="${ pageContext.request.contextPath }/knowledge/js/silder.js"></script>
+		src="${ pageContext.request.contextPath }/js/silder.js"></script>
 </body>
 </html>
