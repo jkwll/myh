@@ -20,7 +20,6 @@
 
 <div class="news_pl">
       <h2>文章评论</h2>
-      123
       				<!--PC版-->
 			<div id="SOHUCS" sid="<s:property value="#lookEssay.essay_id" />"> </div>
 			<script charset="utf-8" type="text/javascript"
