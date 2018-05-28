@@ -147,9 +147,7 @@ function no_off(){
 					class="bds_renren"></a><span class="bds_more"></span><a
 					class="shareCount"></a>
 			</div>
-			
 			-->
-
 			<script type="text/javascript" id="bdshare_js"
 				data="type=tools&amp;uid=6574585"></script>
 			<script type="text/javascript" id="bdshell_js"></script>
@@ -163,7 +161,7 @@ function no_off(){
 	</article>
 	<%@ include file="/public/info.jsp"%>
 	<script src="${ pageContext.request.contextPath }/js/silder.js"></script>
-		 <audio id="music"  style="display:none"  src="http://m10.music.126.net/20180526013943/e41c3b96e6d91300d36f665cbdc8b0bd/ymusic/aaa3/6ac9/5f27/758544b4bed44dd47d9c60803caf3db5.mp3" controls="controls">
+	<audio id="music"  style="display:none"  src="<s:property value="#music" />" controls="controls">
 	
 </body>
 </html>
