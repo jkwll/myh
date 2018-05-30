@@ -34,6 +34,10 @@ public class EssayServiceImpl implements EssayService{
 		Collections.reverse(list); // 倒序排列
 		return list;
 	}
+	public PageBean getPageBean(Integer currentPage, Integer pageSize) {
+		// TODO Auto-generated method stub
+		return ed.getPageBean(currentPage,pageSize);
+	}
 
 	public PageBean getPageBean(DetachedCriteria dc, Integer currentPage, Integer pageSize) {
 		//1 调用Dao查询总记录数
@@ -101,6 +105,7 @@ public class EssayServiceImpl implements EssayService{
 		// TODO Auto-generated method stub
 		
 	}
+
 
 
 

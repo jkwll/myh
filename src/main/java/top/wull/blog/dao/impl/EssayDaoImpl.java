@@ -1,5 +1,6 @@
 package top.wull.blog.dao.impl;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -8,6 +9,7 @@ import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
@@ -15,39 +17,14 @@ import org.springframework.stereotype.Repository;
 import top.wull.blog.antity.Essay;
 import top.wull.blog.antity.EssayType;
 import top.wull.blog.dao.EssayDao;
+import top.wull.blog.util.PageBean;
 import top.wull.common.dao.impl.BaseDaoImpl;
 
 @Repository("essayDao")
 @SuppressWarnings("unchecked")
 public class EssayDaoImpl extends BaseDaoImpl<Essay> implements EssayDao {
 	
-/*	public void update(String picsrc){
-		Essay essay = getHibernateTemplate().get(Essay.class, 1);
-		Integer n  = essay.getCount();
-		essay.setCount(++n);
-		getHibernateTemplate().update(essay);  
-	}
-*/	
 
-	//通过url，将此url对应的essay行conunt添加一
-	public void updateEssayCountByURL(String url) {
-		// TODO Auto-generated method stub
-/*		Criteria criteria = getHibernateTemplate().getSessionFactory().
-				openSession().createCriteria(Essay.class);		
-		criteria.add(Restrictions.eq("url",url));
-		Essay essay = (Essay) criteria.list().get(0);
-		Integer n = essay.getCount();
-		essay.setCount(++n);
-		update(essay);
-*/
-/*		Transaction trans=getHibernateTemplate().getSessionFactory().getCurrentSession().beginTransaction();
-		String hql = "update Essay essay set essay.count=essay.count+'1' where essay.url='"+url+"'";	
-		Query query =getHibernateTemplate().getSessionFactory().getCurrentSession().createQuery(hql);
-		int i = query.executeUpdate();
-		System.out.println("i=="+i);
-		trans.commit();
-*/
-		}
 
 	public List<Essay> getMaxCountEssay() {
 		/*
@@ -154,12 +131,9 @@ public class EssayDaoImpl extends BaseDaoImpl<Essay> implements EssayDao {
 				//sql2 将范围内的文章的排名移前， 设置排名往后的情况     >=essay.getRecommend()并且小于原先的值（设置的值）的文章   原先的值>recommend>设置的值 的文章 -1（即移后1）
 				sql2 = "UPDATE essay AS a SET a.recommend = a.recommend-1 WHERE a.essay_id  IN (	SELECT	tmp.essay_id FROM ( SELECT b.essay_id  FROM essay AS b WHERE b.recommend <= "+essay.getRecommend()+" and  b.recommend >"+recommend+" ) tmp ) "; 				
 			}
-			
-
 			//先updata 排序问题
 			getSessionFactory().getCurrentSession().createSQLQuery(sql2).executeUpdate();	
 		}
-		
 		getSessionFactory().getCurrentSession().createSQLQuery(sql).executeUpdate();				
 		
 	}
@@ -173,6 +147,48 @@ public class EssayDaoImpl extends BaseDaoImpl<Essay> implements EssayDao {
 			return 0;
 		}
 		return (Integer) q.list().get(0);		
+	}
+
+	public PageBean getEssayByRecommend(Integer currentPage, Integer pageSize) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public PageBean getPageBean(Integer currentPage, Integer pageSize) {
+/*		DetachedCriteria dc = DetachedCriteria.forClass(Essay.class);
+		dc.addOrder(Order.asc("recommend"));
+        Criteria criteria =  dc.getExecutableCriteria(getSessionFactory().getCurrentSession());            
+        criteria.setMaxResults(3);  
+*/		//return  (Essay) criteria.list().get(0);
+		DetachedCriteria dc = DetachedCriteria.forClass(Essay.class);
+		//1 调用Dao查询总记录数
+		//Integer  totalCount = getTotalCount(dc);
+		String sql = "SELECT count(*) FROM essay  WHERE recommend != 0";
+		//注意要写toString   https://zhidao.baidu.com/question/560802597.html
+		Integer totalCount =Integer.parseInt(getSessionFactory().getCurrentSession().createSQLQuery(sql).list().get(0).toString());
+		//2 创建PageBean对象
+		PageBean pb = new PageBean(currentPage, totalCount, pageSize);
+		//3 调用Dao查询分页列表数据
+		Integer Start = pb.getTotalCount()-pb.getPageSize()*pb.getCurrentPage();
+		//到最后一页的时候，start可能会小于零
+		if(Start<0){
+			pageSize = pageSize + Start;
+			Start = 0 ;
+		}
+		//System.out.println("开始："+Start+"大小："+pageSize);
+		sql = "SELECT * FROM essay  WHERE recommend != 0 ORDER BY recommend DESC LIMIT "+Start+","+pageSize;
+		SQLQuery q =getSessionFactory().getCurrentSession().createSQLQuery(sql).addEntity(Essay.class);
+		List<Essay> list= q.list();
+		//List<Essay> list = getPageList(dc,Start,pageSize);		
+		Collections.reverse(list); // 倒序排列
+		//4 列表数据放入pageBean中.并返回
+		pb.setList(list);
+		return pb;
+		
+	}
+	public void updateEssayCountByURL(String url) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 

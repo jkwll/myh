@@ -4,13 +4,13 @@ import java.util.List;
 
 import top.wull.blog.antity.Essay;
 import top.wull.blog.antity.EssayType;
+import top.wull.blog.util.PageBean;
 import top.wull.common.dao.BaseDao;
 
 public interface EssayDao extends BaseDao<Essay>{
 
 	List<Essay> getMaxCountEssay();
 
-	void updateEssayCountByURL(String url);
 	
 	
 	/*
@@ -28,4 +28,12 @@ public interface EssayDao extends BaseDao<Essay>{
 	void updateById(Essay e);
 
 	Integer getMaxEssayId();
+
+	PageBean getEssayByRecommend(Integer currentPage, Integer pageSize);
+
+	PageBean getPageBean(Integer currentPage, Integer pageSize);
+
+
+
+	void updateEssayCountByURL(String url);
 }

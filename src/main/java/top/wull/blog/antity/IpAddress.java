@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="IpAddress")
+@Table(name="ipAddress")
 
 public class IpAddress {
 	@Id @Column(name="ip_address_id")

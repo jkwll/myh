@@ -12,7 +12,18 @@
 <link rel="stylesheet" href="${ pageContext.request.contextPath }/css/index.css" type="text/css" />
 <link rel="stylesheet" href="${ pageContext.request.contextPath }/css/style.css" type="text/css" />
 <link rel="stylesheet" href="${ pageContext.request.contextPath }/css/my.css" type="text/css" />
-<script>
+<%-- 换页 --%>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath }/js/jquery-1.8.3.min.js"></script>
+
+<script type="text/javascript">
+function changePage(pageNum){
+	//1 将页码的值放入对应表单隐藏域中
+		$("#currentPageInput").val(pageNum);			
+	//2 提交表单
+		$("#pageForm").submit();
+}
+
 var i = 0;
 function mOver(){
 	var cat = document.getElementById("cat");
@@ -40,6 +51,7 @@ function no_off(){
 	}
 }	
 </script>
+
 <%-- <script type="text/javascript" src="${ pageContext.request.contextPath }/js/music.js" />
  --%>
  <script>
@@ -104,6 +116,14 @@ function no_off(){
 <!-- <body  onload="getImgWH()">
  -->
   <body>
+  	<form id="pageForm" name="customerForm"
+		action="${pageContext.request.contextPath}/index"
+		method=post>
+		<!-- 隐藏域.当前页码 -->
+		<input type="hidden" name="currentPage" id="currentPageInput"
+			value="<s:property value="#pageBean.currentPage" />" />
+	</form>
+    
   	<%@ include file="/public/header.jsp"%>
 	<div class="banner">
 		<section class="box">

@@ -40,13 +40,16 @@
 
 
 			</ul>
-			<h2>About my blog--博客系统还在测试中</h2>
+			<h2>About my blog</h2>
 			<p>
 				域 名：www.wull.top  创建于2017年11月  <a href="https://wanwang.aliyun.com" class="blog_link"
 					target="_blank">注册域名</a>
 			</p>
 			<p>
 				服务器：阿里云服务器<a href="https://www.aliyun.com" class="blog_link" target="_blank">购买空间</a>
+			</p>
+			<p>
+				博客系统还在测试中,系统并非商用，此博客代码写的比较粗糙...   有待进一步优化。
 			</p>
 		</div>
 		<aside class="right">

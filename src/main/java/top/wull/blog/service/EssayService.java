@@ -14,6 +14,7 @@ public interface EssayService {
 	public List getAllKnowledgeEssay();
 	//分页业务方法
 	PageBean getPageBean(DetachedCriteria dc, Integer currentPage, Integer pageSize);
+	PageBean getPageBean( Integer currentPage, Integer pageSize);
 	public List getMaxCountEssay();
 	public void updateEssayCountByURL(String url);
 	//获取最新文章动态

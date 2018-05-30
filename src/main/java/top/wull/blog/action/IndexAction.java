@@ -48,13 +48,13 @@ public class IndexAction extends BaseAction {
 		//根据条件以及开始结束下标查询数据
 		 // List<T> list = this.xxxService().find(cri,start, size);
 		//封装离线查询对象  离线查询不需要sessionFactory 但是api方法比价少 比如取前n个
-		DetachedCriteria dc = DetachedCriteria.forClass(Essay.class);
 		
 		//判断并封装参数
-		dc.add(Restrictions.isNotNull("recommend"));//推荐的文章
-		dc.addOrder(Order.asc("recommend"));
+		//dc.add(Restrictions.isNotNull("recommend"));//推荐的文章
+		//dc.addOrder(Order.asc("recommend"));
 		//1 调用Service查询分页数据(PageBean)
-		PageBean pb = es.getPageBean(dc,currentPage,pageSize);
+		//PageBean pb = es.getPageBean(dc,currentPage,pageSize);
+		PageBean pb = es.getPageBean(currentPage,6);
 		
 		//2 将PageBean放入request域,转发到列表页面显示
 		/*Map<String, Object> data = new HashMap<>();
