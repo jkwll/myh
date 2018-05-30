@@ -42,12 +42,69 @@ function no_off(){
 </script>
 <%-- <script type="text/javascript" src="${ pageContext.request.contextPath }/js/music.js" />
  --%>
+ <script>
+ //执行宽高比对并设置img类名
+  //执行宽高比对并设置img类名
+/*  function getImgWH () {
+	 var list = document.getElementById("list");
+ 	alert("播放0："+list);
+  var img = list.getElementsByTagName('img');
+  for( var i=0 ; i<img.length ; i++ ){
+	 	alert("01："+img[i]);
+
+   img[i].onload = function(){
+	 	alert("0100000");
+
+    var width = this.width;
+    var height = this.height;
+    if ( width > height ) {
+    	alert("播放0：");
+     this.classList.add('height');
+    } else if ( width < height ) {
+    	alert("播放1：");
+     this.classList.add('width');
+    } else {
+    	alert("播放2：");
+     this.style.width = '100%';
+     this.style.height = '100%';
+    }
+   }
+  }
+ } */
+/*  function getImgWH () {
+		alert("播放0：");
+	 var img =  document.getElementById("img1").childNodes;	 
+	alert("播放1*****："+img);
+
+  for( var i=0 ; i<img.length ; i++ ){
+		alert("播放2");
+
+	   img[i].onload = function(){
+			alert("播放3");
+
+	    var width = this.width;
+	    var height = this.height;
+	    if ( width > height ) {
+	     this.classList.add('height');
+	    } else if ( width < height ) {
+	     this.classList.add('width');
+	    } else {
+	     this.style.width = '100%';
+	     
+	     this.style.height = '100%';
+	    }
+	   }
+	  }
+		alert("播放123");
+
+ }
+ */</script>
 
 </head>
-<body>
-
-	<%@ include file="/public/header.jsp"%>
-	
+<!-- <body  onload="getImgWH()">
+ -->
+  <body>
+  	<%@ include file="/public/header.jsp"%>
 	<div class="banner">
 		<section class="box">
 			<ul class="texts">
@@ -61,7 +118,7 @@ function no_off(){
 		</section>
 	</div>
 	<div class="template">
-		<div class="box">
+		<div id="box1" class="box">
 			<h3>
 				<p>
 					<span>最新</span>动态
@@ -69,10 +126,13 @@ function no_off(){
 			</h3>
 			<ul>
 				<s:iterator var="e" value="#news" status="status">
-					<li><a href="<s:property value="#e.url" />" target="_blank"><img
-							src="http://<s:property value="#e.picsrc" />"></a><span><s:property
-								value="#e.title" /></span></li>
+					<li id="list">
+					<a href="<s:property value="#e.url" />" target="_blank">
+					<img id="img1" src="http://<s:property value="#e.picsrc" />"></a><span><s:property
+								value="#e.title" /></span>
+					</li>
 				</s:iterator>
+			</ul>
 <!-- 				<li>
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=2&id=165237&auto=1&height=32"></iframe>				
 				</li>

@@ -1,8 +1,9 @@
 <%@ page contentType="text/html; charset=utf-8" language="java"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<script async="" charset="utf-8" src="./吴亮亮留言板_files/getConfig"></script>
-<link href="${ pageContext.request.contextPath }/css/new.css"
+<%-- <script async="" charset="utf-8" src="./吴亮亮留言板_files/getConfig"></script>
+ --%>
+ <link href="${ pageContext.request.contextPath }/css/new.css"
 	rel="stylesheet">
 <!-- 手机移动跳转-->
 <script

@@ -22,9 +22,10 @@
 		<%@ include file="/public/knowledge_right.jsp"%>
 	</article>
 	<%@ include file="/public/info.jsp"%>
-	<script
+<%-- 	<script
 		src="${ pageContext.request.contextPath }/js/common.js"></script>
 	<script
 		src="${ pageContext.request.contextPath }/js/silder.js"></script>
-</body>
+ --%>
+ </body>
 </html>
