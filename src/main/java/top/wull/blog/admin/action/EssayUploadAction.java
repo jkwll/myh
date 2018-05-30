@@ -72,6 +72,7 @@ public class EssayUploadAction extends ActionSupport
 	private String htmlFileFileName;
 	private String keywords;
 	private Integer flag;
+	private Integer recommend;
 	private String content;
 	// 封装图片文件域的属性
 	private File pic;
@@ -144,6 +145,13 @@ public class EssayUploadAction extends ActionSupport
 	public void setFlag(Integer flag) {
 		this.flag = flag;
 	}
+	public Integer getRecommend() {
+		return recommend;
+	}
+	public void setRecommend(Integer recommend) {
+		this.recommend = recommend;
+	}
+
 	public String getEditor() {
 		return editor;
 	}
@@ -317,12 +325,10 @@ public class EssayUploadAction extends ActionSupport
 		wstr = wstr.substring(0, n)+str+wstr.substring(n+"text123".length(), wstr.length());
 		return wstr;
 	}
-/**
- * 弃用
- * @param str 文章的html内容
- * @param sqlurl 保存在数据库中的url
- * @return
- * @throws Exception 
+	/**
+	 * 后台管理运行的方法
+	 * @return
+	 * @throws Exception
 	 */
 	public String admin() throws Exception{
 		//后台查询的时候
@@ -363,30 +369,15 @@ public class EssayUploadAction extends ActionSupport
 		e.setEssay_id(essay_id);
 		e.setIntroduction(introduction);
 		e.setTitle(title);
+		e.setRecommend(recommend);
 		if(flag==null){
 			flag = 0;
 		}
 		e.setFlag(flag);
 		//要更新图片的时候
 		if(pic!=null){
-			// 以服务器的文件保存地址和原文件名建立上传文件输出流
-/*			String picsrc = ServletActionContext.getServletContext().getRealPath("/webfile/images");
-
-			FileOutputStream fos = new FileOutputStream(picsrc+
-					 "\\" + getPicFileName());
-			FileInputStream fis = new FileInputStream(getPic());
-			byte[] buffer = new byte[1024];
-			int len = 0;
-			while ((len = fis.read(buffer)) > 0)
-			{
-				fos.write(buffer , 0 , len);
-			}
-			fos.close();
-			picsrc = "webfile/images"+"/"+getPicFileName();
-*/
 			//上传图片
 			String [] picUrl = FastDFSClient.upLoadImage(getPicFileName(),getPic());
-
 			e.setPicsrc(picUrl[1]);
 		}
 		es.updateById(e);

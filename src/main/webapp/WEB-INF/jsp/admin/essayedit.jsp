@@ -39,8 +39,11 @@
 			<div class="content">
 				<s:form action="essayadmin" method="post"
 					enctype="multipart/form-data">
-					flag1：<input type="text" name="flag" class="layui-input"
+					分类flag：<input type="text" name="flag" class="layui-input"
 						value="<s:property value="#essay.flag" />" />
+					<br>
+					推荐等级：<input type="text" name="recommend" class="layui-input"
+						value="<s:property value="#essay.recommend" />" />
 					<br>
 					id：<input type="text" name="essay_id" class="layui-input"
 						value="<s:property value="#essay.essay_id" />" />

@@ -116,7 +116,7 @@ public class EssayDaoImpl extends BaseDaoImpl<Essay> implements EssayDao {
 		//文字一定要加 ''
 		String sql;
 		if(essay.getPicsrc()!=null){
-			 sql = "UPDATE essay SET title = '"+essay.getTitle()+"', flag="+essay.getFlag()+", picsrc='"+essay.getPicsrc()+"', introduction='"+essay.getIntroduction()+"' WHERE essay_id = '"+essay.getEssay_id()+"'";			
+			 sql = "UPDATE essay SET title = '"+essay.getTitle()+"',recommend = '"+essay.getRecommend()+"', flag="+essay.getFlag()+", picsrc='"+essay.getPicsrc()+"', introduction='"+essay.getIntroduction()+"' WHERE essay_id = '"+essay.getEssay_id()+"'";			
 		}else{
 			 sql = "UPDATE essay SET title = '"+essay.getTitle()+"', flag="+essay.getFlag()+", introduction='"+essay.getIntroduction()+"' WHERE essay_id = '"+essay.getEssay_id()+"'";			
 		}

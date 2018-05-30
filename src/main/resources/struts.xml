@@ -4,12 +4,15 @@
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
+
+
 	<!-- 设置该应用使用的字符集 -->
 	<constant name="struts.i18n.encoding" value="utf-8" />
 	<!-- 后缀名 默认action <constant name="struts.action.extension" value="action"></constant> -->
 	<!-- # struts.objectFactory = spring 将action的创建交给spring容器 struts.objectFactory.spring.autoWire 
 		= name spring负责装配Action依赖属性 -->
 	<constant name="struts.objectFactory" value="spring"></constant>
+	
 	
 	<package name="page" namespace="/" extends="struts-default">
 		<!-- 配置首页菜单的Action -->
@@ -114,9 +117,9 @@
 			<result name="toLogin">/login.jsp</result>
 		</action>
 	</package>
-
 	<!-- 配置后台的Action -->
 	<package name="admin" namespace="/admin" extends="struts-default">
+	
 		<interceptors>
 			<!-- 注册拦截器 -->
 			<interceptor name="privilegeInterceptor"
@@ -138,7 +141,6 @@
 			<exception-mapping result="error"
 				exception="java.lang.RuntimeException"></exception-mapping>
 		</global-exception-mappings>
-		
 		<action name="toLogin" class="top.wull.blog.action.UserAction"
 			method="toLogin">
 			<result name="toLogin">/WEB-INF/jsp/admin/login.jsp</result>
@@ -159,8 +161,7 @@
 			<result name="essayadd">/WEB-INF/jsp/admin/essayadd.jsp</result>
 			<result name="essayedit">/WEB-INF/jsp/admin/essayedit.jsp</result>
 		</action>
-		<action name="mood*" class="top.wull.blog.admin.action.MoodUploadAction"
-			method="{1}">
+		<action name="mood*" class="top.wull.blog.admin.action.MoodUploadAction" method="{1}">
 			<result name="moodlist">/WEB-INF/jsp/admin/moodlist.jsp</result>
 			<result name="moodadd">/WEB-INF/jsp/admin/moodadd.jsp</result>
 			<result name="moodadmin">/WEB-INF/jsp/admin/moodadmin.jsp</result>
