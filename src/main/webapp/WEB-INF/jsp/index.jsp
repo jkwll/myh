@@ -126,7 +126,7 @@ function no_off(){
     
   	<%@ include file="/public/header.jsp"%>
 	<div class="banner">
-		<section class="box">
+<%-- 		<section class="box">
 			<ul class="texts">
 				<p>梦想还是得有的，万一实现了呢！</p>
 				<p>人若虚度光阴，跟咸鱼有什么区别</p>
@@ -136,7 +136,7 @@ function no_off(){
 				<a href="#"><span>吴亮亮</span></a>
 			</div>
 		</section>
-	</div>
+ --%>	</div>
 	<div class="template">
 		<div id="box1" class="box">
 			<h3>

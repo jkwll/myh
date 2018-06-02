@@ -10,7 +10,7 @@
 
 	<!-- 读取db.properties文件123 -->
 	<context:property-placeholder location="classpath:db.properties" />
-	<!-- 开启扫描类中的注解115 -->
+	<!-- 开启扫描类中的注解 -->
 	<context:component-scan base-package="top.wull"></context:component-scan>
 	<!-- 配置c3p0连接池 -->
 	<bean name="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">

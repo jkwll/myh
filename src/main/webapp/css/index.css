@@ -553,7 +553,9 @@ opacity
 }
 
 .template {
-	background: #F1F0EE
+	width:1150px;
+	background: #F1F0EE;
+	margin:0px auto;
 }
 
 .template h3 {

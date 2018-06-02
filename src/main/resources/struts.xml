@@ -4,8 +4,6 @@
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
-
-
 	<!-- 设置该应用使用的字符集 -->
 	<constant name="struts.i18n.encoding" value="utf-8" />
 	<!-- 后缀名 默认action <constant name="struts.action.extension" value="action"></constant> -->
