@@ -3,10 +3,10 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>吴亮亮个人博客网站—一个站在web前段设计之路的男技术员个人博客网站</title>
-<meta name="keywords" content="个人博客,吴亮亮个人博客,个人博客模板,吴亮亮" />
+<title>木鱼湖生态休闲网站—一个站在web前段设计之路的男技术员生态休闲网站</title>
+<meta name="keywords" content="生态休闲,木鱼湖生态休闲,生态休闲模板,木鱼湖" />
 <meta name="description"
-	content="吴亮亮个人博客，是一个站在web前端设计之路的男程序员个人网站，提供个人博客模板免费资源下载的个人原创网站。" />
+	content="木鱼湖生态休闲，是一个站在web前端设计之路的男生态休闲个人网站，提供生态休闲模板免费资源下载的个人原创网站。" />
 <link href="${pageContext.request.contextPath }/css/base.css"
 	rel="stylesheet">
 <link href="${pageContext.request.contextPath }/css/learn.css"

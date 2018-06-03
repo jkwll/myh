@@ -3,10 +3,10 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>吴亮亮个人博客网站—个人博客网站</title>
-<meta name="keywords" content="个人博客,吴亮亮个人博客,个人博客模板,吴亮亮" />
+<title>木鱼湖生态休闲网站—生态休闲网站</title>
+<meta name="keywords" content="生态休闲,木鱼湖生态休闲,生态休闲模板,木鱼湖" />
 <meta name="description"
-	content="吴亮亮个人博客，是一个站在web前端设计之路的男程序员个人网站。" />
+	content="木鱼湖生态休闲，是一个站在web前端设计之路的男生态休闲个人网站。" />
 <link href="${pageContext.request.contextPath }/css/base.css"
 	rel="stylesheet">
 <link href="${pageContext.request.contextPath }/css/learn.css"
@@ -42,8 +42,8 @@
 	<%@ include file="/public/header.jsp"%>
 	<article class="blogs">
 		<h1 class="t_nav">
-			<span>我们长路漫漫，只因学无止境。 </span><a href="/" class="n1">网站首页</a><a
-				href="/" class="n2">学无止境</a>
+			<span>木鱼湖专题活动。。 </span><a href="/" class="n1">网站首页</a><a
+				href="/" class="n2">专题活动</a>
 		</h1>
 
 		<%@ include file="/public/essay_list.jsp"%>
@@ -51,7 +51,6 @@
 		<%@ include file="/public/knowledge_right.jsp"%>
 	</article>
 	<%@ include file="/public/info.jsp"%>
-
 	<script src="js/silder.js"></script>
 </body>
 </html>

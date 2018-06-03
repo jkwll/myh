@@ -3,10 +3,10 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>吴亮亮个人博客网站—个人博客网站</title>
-<meta name="keywords" content="个人博客,吴亮亮个人博客,个人博客模板,吴亮亮" />
+<title>木鱼湖生态休闲网站—生态休闲网站</title>
+<meta name="keywords" content="生态休闲,木鱼湖生态休闲,生态休闲模板,木鱼湖" />
 <meta name="description"
-	content="吴亮亮个人博客，是一个站在web前端设计之路的男程序员个人网站，提供个人博客模板免费资源下载的个人原创网站。" />
+	content="木鱼湖生态休闲，是一个站在web前端设计之路的男生态休闲个人网站，提供生态休闲模板免费资源下载的个人原创网站。" />
 <link href="${ pageContext.request.contextPath }/css/base.css"
 	rel="stylesheet">
 <link href="${ pageContext.request.contextPath }/css/mood.css"
@@ -33,8 +33,8 @@
 	<%@ include file="/public/header.jsp"%>
 	<div class="moodlist">
 		<h1 class="t_nav">
-			<span>删删写写，回回忆忆，虽无法行云流水，却也可碎言碎语。</span><a href="/" class="n1">网站首页</a><a
-				href="/" class="n2">碎言碎语</a>
+			<span>木鱼湖美景，尽收眼底</span><a href="/" class="n1">网站首页</a><a
+				href="/" class="n2">木鱼湖景色</a>
 		</h1>
 		<div class="bloglist">
 			<!-- 迭代遍历list -->

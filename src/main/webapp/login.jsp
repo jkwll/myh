@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>123456登陆页面</title>
+<title>木鱼湖后台管理员登陆页面</title>
 <script
 	src="${pageContext.request.contextPath }/admin/js/jquery-1.8.3.js"
 	type="text/javascript"></script>
@@ -53,7 +53,7 @@ input[type=password] {
 <body style="background-color: #87CEEB">
 	<div
 		style="width: 900px; height: 50px; position: absolute; text-align: left; left: 50%; top: 50%; margin-left: -450px;; margin-top: -280px;">
-		<span style="float: right; margin-top: 35px; color: #488ED5;">wull管理页面</span>
+		<span style="float: right; margin-top: 35px; color: #488ED5;">木鱼湖后台管理员登陆页面</span>
 	</div>
 	<div class="main-inner" id="mainCnt"
 		style="width: 900px; height: 440px; overflow: hidden; position: absolute; left: 50%; top: 50%; margin-left: -450px; margin-top: -220px; background-color: #87CEEB">

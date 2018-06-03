@@ -3,10 +3,10 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>吴亮亮个人博客网站—一个在二进制田野上耕耘的农民个人博客网站</title>
-<meta name="keywords" content="个人博客,吴亮亮个人博客,个人博客模板,吴亮亮" />
+<title>木鱼湖生态休闲网站—一个在二进制田野上耕耘的农民生态休闲网站</title>
+<meta name="keywords" content="生态休闲,木鱼湖生态休闲,生态休闲模板,木鱼湖" />
 <meta name="description"
-	content="吴亮亮个人博客，是一个站在web前端设计之路的男程序员个人网站，提供个人博客模板免费资源下载的个人原创网站。" />
+	content="木鱼湖生态休闲，是一个站在web前端设计之路的男生态休闲个人网站，提供生态休闲模板免费资源下载的个人原创网站。" />
 <link href="./css/base.css" rel="stylesheet">
 <link href="./css/template.css" rel="stylesheet">
 <!--[if lt IE 9]>
@@ -19,20 +19,20 @@
 	<article class="blogs">
 		<h1 class="t_nav">
 			<span>您当前的位置：<a href="/index.html">首页</a>&nbsp;&gt;&nbsp;<a
-				href="/news/s/">模板分享</a>&nbsp;&gt;&nbsp;<a href="/news/s/">个人博客模板</a></span><a
-				href="/" class="n1">网站首页</a><a href="/" class="n2">个人博客模板</a>
+				href="/news/s/">模板分享</a>&nbsp;&gt;&nbsp;<a href="/news/s/">生态休闲模板</a></span><a
+				href="/" class="n1">网站首页</a><a href="/" class="n2">生态休闲模板</a>
 		</h1>
 		<div class="index_about">
-			<h2 class="c_titile">仿新浪博客风格·梅——古典个人博客模板</h2>
+			<h2 class="c_titile">仿新浪博客风格·梅——古典生态休闲模板</h2>
 			<p class="box_c">
-				<span class="d_time">发布时间：2013-09-08</span><span>编辑：吴亮亮</span><span>互动QQ群：<a
+				<span class="d_time">发布时间：2013-09-08</span><span>编辑：木鱼湖</span><span>互动QQ群：<a
 					href="http://wp.qq.com/wpa/qunwpa?idkey=d4d4a26952d46d564ee5bf7782743a70d5a8c405f4f9a33a60b0eec380743c64">280998807</a></span>
 			</p>
 			<ul class="infos">
 				<p>界面设计非原创，出自新浪博客风格·梅作者水云心。在原来的设计上增加了梅花飘落的flash动画。原设计的边界阴影部分用图片实现，本例采用css3新的规则属性，box-shadow。</p>
 				<p>
 					<img src="images/5416dd08017075c692766f67049890d4.jpg"
-						alt="仿新浪博客风格·梅——古典个人博客模板">
+						alt="仿新浪博客风格·梅——古典生态休闲模板">
 				</p>
 				<p>
 					<a href="/web/23/" target="_blank"><span
@@ -59,14 +59,14 @@
 			</div>
 			<div class="keybq">
 				<p>
-					<span>关键字词</span>：模板,个人博客模板,博客模板下载,模板下载
+					<span>关键字词</span>：模板,生态休闲模板,博客模板下载,模板下载
 				</p>
 
 			</div>
 			<div class="ad"></div>
 			<div class="nextinfo">
 				<p>
-					上一篇：<a href="/news/s/2013-09-04/606.html">黑色质感时间轴html5个人博客模板</a>
+					上一篇：<a href="/news/s/2013-09-04/606.html">黑色质感时间轴html5生态休闲模板</a>
 				</p>
 				<p>
 					下一篇：<a href="/news/s/2013-10-21/616.html">返回列表</a>

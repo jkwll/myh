@@ -3,10 +3,10 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>吴亮亮个人博客网站—个人博客网站</title>
-<meta name="keywords" content="个人博客,吴亮亮个人博客,个人博客模板,吴亮亮" />
+<title>木鱼湖生态休闲网站—生态休闲网站</title>
+<meta name="keywords" content="生态休闲,木鱼湖生态休闲,生态休闲模板,木鱼湖" />
 <meta name="description"
-	content="吴亮亮个人博客，是一个站在web前端设计之路的男程序员个人网站，提供个人博客模板免费资源下载的个人原创网站。" />
+	content="木鱼湖生态休闲，是一个站在web前端设计之路的男生态休闲个人网站，提供生态休闲模板免费资源下载的个人原创网站。" />
 <link href="./css/base.css" rel="stylesheet">
 <link href="./css/share.css" rel="stylesheet">
 <!--[if lt IE 9]>
@@ -22,10 +22,10 @@
 				href="/" class="n2">模板分享</a>
 		</h1>
 		<div class="newblog left">
-			<h2>仿新浪博客风格·梅——古典个人博客模板</h2>
+			<h2>仿新浪博客风格·梅——古典生态休闲模板</h2>
 			<p class="dateview">
-				<span>发布时间：2013-11-04</span><span>作者：吴亮亮</span><span>模板分类：[<a
-					href="/news/life/">个人博客模板</a>]
+				<span>发布时间：2013-11-04</span><span>作者：木鱼湖</span><span>模板分类：[<a
+					href="/news/life/">生态休闲模板</a>]
 				</span>
 			</p>
 			<figure>
@@ -36,46 +36,46 @@
 				<a title="/" href="/" target="_blank" class="readmore">详细信息>></a>
 			</ul>
 			<div class="line"></div>
-			<h2>黑色质感时间轴html5个人博客模板</h2>
+			<h2>黑色质感时间轴html5生态休闲模板</h2>
 			<p class="dateview">
-				<span>发布时间：2013-11-04</span><span>作者：吴亮亮</span><span>模板分类：[<a
-					href="/news/life/">个人博客模板</a>]
+				<span>发布时间：2013-11-04</span><span>作者：木鱼湖</span><span>模板分类：[<a
+					href="/news/life/">生态休闲模板</a>]
 				</span>
 			</p>
 			<figure>
 				<img src="images/02.jpg">
 			</figure>
 			<ul class="nlist">
-				<p>黑色时间轴html5个人博客模板颜色以黑色为主色，添加了彩色作为网页的一个亮点，导航高亮显示、banner图片鼠标划过，可以看到隐藏的文字。css3动画应用在banner和右边“我的名片”个人信息。重点在时间轴部分，三角形和圆形均是css代码写出来的，postion定位，增加页面返回到顶部的代码....</p>
+				<p>黑色时间轴html5生态休闲模板颜色以黑色为主色，添加了彩色作为网页的一个亮点，导航高亮显示、banner图片鼠标划过，可以看到隐藏的文字。css3动画应用在banner和右边“我的名片”个人信息。重点在时间轴部分，三角形和圆形均是css代码写出来的，postion定位，增加页面返回到顶部的代码....</p>
 				<a title="/" href="/" target="_blank" class="readmore">详细信息>></a>
 			</ul>
 			<div class="line"></div>
-			<h2>Green绿色小清新的夏天-个人博客模板</h2>
+			<h2>Green绿色小清新的夏天-生态休闲模板</h2>
 			<p class="dateview">
-				<span>发布时间：2013-11-04</span><span>作者：吴亮亮</span><span>模板分类：[<a
-					href="/news/life/">个人博客模板</a>]
+				<span>发布时间：2013-11-04</span><span>作者：木鱼湖</span><span>模板分类：[<a
+					href="/news/life/">生态休闲模板</a>]
 				</span>
 			</p>
 			<figure>
 				<img src="images/03.jpg">
 			</figure>
 			<ul class="nlist">
-				<p>这是一个有关Green绿色小清新的夏天的css3 html5绿色个人博客网站模板，导航下面的效果使用了CSS3
+				<p>这是一个有关Green绿色小清新的夏天的css3 html5绿色生态休闲网站模板，导航下面的效果使用了CSS3
 					Animation 实现对象从右到左渐变的动画效果。</p>
 				<a title="/" href="/" target="_blank" class="readmore">详细信息>></a>
 			</ul>
 			<div class="line"></div>
-			<h2>男生清新个人博客网站模板</h2>
+			<h2>男生清新生态休闲网站模板</h2>
 			<p class="dateview">
-				<span>发布时间：2013-11-04</span><span>作者：吴亮亮</span><span>模板分类：[<a
-					href="/news/life/">个人博客模板</a>]
+				<span>发布时间：2013-11-04</span><span>作者：木鱼湖</span><span>模板分类：[<a
+					href="/news/life/">生态休闲模板</a>]
 				</span>
 			</p>
 			<figure>
 				<img src="images/04.jpg">
 			</figure>
 			<ul class="nlist">
-				<p>这是一个html5+css个人博客模板，顶部导航用了css3的gradient背景颜色渐变效果，结合js，对当前栏目高亮显示并且skew水平倾斜的效果。左侧头像也用了css3鼠标放上去滑动出文字的效果...</p>
+				<p>这是一个html5+css生态休闲模板，顶部导航用了css3的gradient背景颜色渐变效果，结合js，对当前栏目高亮显示并且skew水平倾斜的效果。左侧头像也用了css3鼠标放上去滑动出文字的效果...</p>
 				<a title="/" href="/" target="_blank" class="readmore">详细信息>></a>
 			</ul>
 			<div class="line"></div>
@@ -93,7 +93,7 @@
 			<div class="rnav">
 				<h2>栏目导航</h2>
 				<ul>
-					<li><a href="/download/" target="_blank">个人博客模板</a></li>
+					<li><a href="/download/" target="_blank">生态休闲模板</a></li>
 					<li><a href="/newsfree/" target="_blank">国外Html5模板</a></li>
 					<li><a href="/download/" target="_blank">企业网站模板</a></li>
 					<li><a href="/newsfree/" target="_blank">作品展示</a></li>

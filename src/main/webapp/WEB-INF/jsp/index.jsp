@@ -3,9 +3,9 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>吴亮亮个人博客-分享java技术的个人博客网站</title>
-<meta name="keywords" content="个人博客,亮亮,吴亮亮,博客,技术,java" />
-<meta name="description" content="吴亮亮个人博客-分享java技术的个人博客网站" />
+<title>木鱼湖生态休闲网站</title>
+<meta name="keywords" content="生态休闲,木鱼湖,博客,技术,java" />
+<meta name="description" content="木鱼湖生态休闲-分享java技术的生态休闲网站" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link rel="stylesheet" href="${ pageContext.request.contextPath }/css/base.css" type="text/css" />
@@ -133,7 +133,7 @@ function no_off(){
 				<p>没有舞台就自己搭一座</p>
 			</ul>
 			<div class="avatar">
-				<a href="#"><span>吴亮亮</span></a>
+				<a href="#"><span>木鱼湖</span></a>
 			</div>
 		</section>
  --%>	</div>
@@ -192,7 +192,7 @@ function no_off(){
 				</ul>
 				<p class="dateview">
 					<span>&nbsp;<s:property value="#e.time" />
-					</span><span>作者：<s:property value="#e.editor" /></span><span>个人博客：[
+					</span><span>作者：<s:property value="#e.editor" /></span><span>生态休闲：[
 						<a><s:property value="#e.essayType.name" /></a> ]
 					</span>
 				</p>
@@ -216,7 +216,9 @@ function no_off(){
 					</p>
 				</h3>
 				<ul class="website">
-					<li><a href="/">个人博客123</a></li>
+					<li><a href="http://www.hnie.edu.cn">湖南工程学院</a></li>
+					<li><a href="http://www.wull.top">吴小亮的博客</a></li>
+					<li><a href="http://tieba.baidu.com/f?ie=utf-8&kw=%E6%B9%96%E5%8D%97%E5%B7%A5%E7%A8%8B%E5%AD%A6%E9%99%A2&fr=search">湖南工程学院贴吧</a></li>
 				</ul>
 			</div>
 			<!-- 

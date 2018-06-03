@@ -3,10 +3,10 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>吴亮亮个人博客网站—分享生活和技术的个人博客网站</title>
-<meta name="keywords" content="个人博客,吴亮亮个人博客,个人博客模板,吴亮亮" />
+<title>木鱼湖生态休闲网站—分享生活和技术的生态休闲网站</title>
+<meta name="keywords" content="生态休闲,木鱼湖生态休闲,生态休闲模板,木鱼湖" />
 <meta name="description"
-	content="吴亮亮个人博客，是一个站在web前端设计之路的男程序员个人网站，提供个人博客模板免费资源下载的个人原创网站。" />
+	content="木鱼湖生态休闲，是一个站在web前端设计之路的男生态休闲个人网站，提供生态休闲模板免费资源下载的个人原创网站。" />
 <link href="./css/base.css" rel="stylesheet">
 <link href="./css/new.css" rel="stylesheet">
 <!--[if lt IE 9]>
@@ -26,7 +26,7 @@
 		<div class="index_about">
 			<h2 class="c_titile">爱情不容有错，即使错了那就重来</h2>
 			<p class="box_c">
-				<span class="d_time">发布时间：2013-09-08</span><span>编辑：吴亮亮</span><span>互动QQ群：<a
+				<span class="d_time">发布时间：2013-09-08</span><span>编辑：木鱼湖</span><span>互动QQ群：<a
 					href="http://wp.qq.com/wpa/qunwpa?idkey=d4d4a26952d46d564ee5bf7782743a70d5a8c405f4f9a33a60b0eec380743c64">280998807</a></span>
 			</p>
 			<ul class="infos">
@@ -53,7 +53,7 @@
 			<div class="ad"></div>
 			<div class="nextinfo">
 				<p>
-					上一篇：<a href="/news/s/2013-09-04/606.html">程序员应该如何高效的工作学习</a>
+					上一篇：<a href="/news/s/2013-09-04/606.html">生态休闲应该如何高效的工作学习</a>
 				</p>
 				<p>
 					下一篇：<a href="/news/s/2013-10-21/616.html">柴米油盐的生活才是真实</a>

@@ -3,9 +3,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<%-- <script async="" charset="utf-8" src="./吴亮亮留言板_files/getConfig"></script>
+<%-- <script async="" charset="utf-8" src="./木鱼湖留言板_files/getConfig"></script>
  --%>
- <title>吴亮亮个人博客网站—个人博客网站</title>
+ <title>木鱼湖生态休闲网站—生态休闲网站</title>
 <meta name="keywords" content="yangqq留言板">
 <meta name="description" content="yangqq留言板">
 <link href="${ pageContext.request.contextPath }/css/base.css"
@@ -39,21 +39,27 @@
 		</div>
 		<aside class="right">
 			<div class="about_c">
-				<p>
-					网名：<span>DanceSmile</span> | 即步非烟
+								<p>
+					地理位置：<span>湖南省湘潭市</span>
 				</p>
-				<p>姓名：吴亮亮</p>
-				<p>籍贯：湖南省</p>
-				<p>现居：湘潭市—岳塘</p>
-				<p>职业：学生</p>
+				<p>
+					占地面积：<span>14.9公顷</span>
+				</p>
+				<p>
+					著名景点：<span>滨水绿带、人工湿地等</span>
+				</p>
+				<p>
+					竣工日期：<span>2015年年底</span>
+				</p>
+
 				<!-- a target="_blank"
 						href="http://wp.qq.com/wpa/qunwpa?idkey=d4d4a26952d46d564ee5bf7782743a70d5a8c405f4f9a33a60b0eec380743c64">
 						<img src="http://pub.idqqimg.com/wpa/images/group.png"
-						alt="吴亮亮个人博客网站" title="吴亮亮个人博客网站">
+						alt="木鱼湖生态休闲网站" title="木鱼湖生态休闲网站">
 					</a> <a target="_blank"
 						href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=HHh9cn95b3F1cHVye1xtbTJ-c3E"><img
 						src="http://rescdn.qqmail.com/zh_CN/htmledition/images/function/qm_open/ico_mailme_22.png"
-						alt="吴亮亮个人博客网站"></a -->
+						alt="木鱼湖生态休闲网站"></a -->
 			</div>
 		</aside>
 	</article>
