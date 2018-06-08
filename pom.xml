@@ -213,7 +213,7 @@
 				<server>tomcat8</server>
 				<path>/</path>
  -->
-  			        <url>http://119.23.106.40:8081/manager/text</url>
+  			        <url>http://119.23.106.40:8085/manager/text</url>
   			        <server>tomcat8</server>
 			        <username>tomcat</username>
 			        <password>tomcatpassword</password>

@@ -33,7 +33,7 @@ public class IpDaoImpl extends BaseDaoImpl<IpAddress> implements IpDao {
         Date date = new Date();
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String date2 = format.format(date);
-        String sql = "INSERT INTO IpAddress (code,ip,country,area,region,city,county,isp,url,time)VALUE('"+code+"','"+addressip+"','"+country+"','"+area+"','"+region+"','"+city+"','"+county+"','"+isp+"','"+url+"','"+date2+"')";
+        String sql = "INSERT INTO ipAddress (code,ip,country,area,region,city,county,isp,url,time)VALUE('"+code+"','"+addressip+"','"+country+"','"+area+"','"+region+"','"+city+"','"+county+"','"+isp+"','"+url+"','"+date2+"')";
 		//Session session = getSessionFactory().getCurrentSession();
 		Session session = getSessionFactory().getCurrentSession();
 		
