@@ -29,7 +29,7 @@
 <body>
 	<!-- 服务端传来的#changeurl 识别是点了导航栏还是head -->
 	<form id="pageForm" name="customerForm"
-		action="${pageContext.request.contextPath}/life.action<s:property value="#changeurl" />"
+		action="${pageContext.request.contextPath}/life1<s:property value="#changeurl" />"
 		method=post>
 		<!-- 隐藏域.当前页码 -->
 		<input type="hidden" name="currentPage" id="currentPageInput"

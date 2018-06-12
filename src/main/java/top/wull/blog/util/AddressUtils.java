@@ -187,9 +187,12 @@ public class AddressUtils {
   * @return
   */
  public String getRemortIP(HttpServletRequest request) { 
+	 //https://www.cnblogs.com/mypath/articles/5239687.html
+	 //如果有多级代理，x-forwarded-for效果是大于x-real-ip的，可以记录完整的代理链路
 	  if (request.getHeader("x-forwarded-for") == null) { 
 	   return request.getRemoteAddr(); 
 	  } 
+	  //用nginx代理的时候
 	  return request.getHeader("x-forwarded-for"); 
 	 } 
  // 测试

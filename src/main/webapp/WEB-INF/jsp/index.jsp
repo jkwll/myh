@@ -171,7 +171,7 @@ function no_off(){
 	<article>
 		<h2 class="title_tj">
 			<p>
-				文章<span>推荐</span>
+				木鱼湖<span>公告</span>
 			</p>
 		</h2>
 		<div class="bloglist left">

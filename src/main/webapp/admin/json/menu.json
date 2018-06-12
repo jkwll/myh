@@ -1,7 +1,7 @@
 [
-		{ "id":"12", "pId":"0", "name":"说说"},
-		{ "id":"121", "pId":"12", "name":"发表说说" ,"page":"${ pageContext.request.contextPath }/admin/moodadd"},
-		{ "id":"122", "pId":"12", "name":"管理说说" ,"page":"${ pageContext.request.contextPath }/admin/moodadmin"},
+		{ "id":"12", "pId":"0", "name":"景色管理"},
+		{ "id":"121", "pId":"12", "name":"发表景色图片" ,"page":"${ pageContext.request.contextPath }/admin/moodadd"},
+		{ "id":"122", "pId":"12", "name":"管理景色内容" ,"page":"${ pageContext.request.contextPath }/admin/moodadmin"},
 		{ "id":"13", "pId":"0", "name":"文章"},
 		{ "id":"131", "pId":"13", "name":"发表文章","page":"${ pageContext.request.contextPath }/admin/essayadd"},
 		{ "id":"132", "pId":"13", "name":"管理文章","page":"${ pageContext.request.contextPath }/admin/essayadmin"}

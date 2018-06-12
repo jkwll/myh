@@ -43,35 +43,18 @@ public class IndexAction extends BaseAction {
 	public String life(){
 		return "life";
 	}
-	
+	/**
+	 * 获取首页的信息内容
+	 * @return
+	 * @throws Exception
+	 */
 	public String list() throws Exception {
-		//根据条件以及开始结束下标查询数据
-		 // List<T> list = this.xxxService().find(cri,start, size);
-		//封装离线查询对象  离线查询不需要sessionFactory 但是api方法比价少 比如取前n个
-		
-		//判断并封装参数
-		//dc.add(Restrictions.isNotNull("recommend"));//推荐的文章
-		//dc.addOrder(Order.asc("recommend"));
-		//1 调用Service查询分页数据(PageBean)
-		//PageBean pb = es.getPageBean(dc,currentPage,pageSize);
 		PageBean pb = es.getPageBean(currentPage,6);
-		
-		//2 将PageBean放入request域,转发到列表页面显示
-		/*Map<String, Object> data = new HashMap<>();
-		data.put("news", news());
-		data.put("newEssaylist", newEssaylist(8));
-		data.put("showMaxCountEssay", showMaxCountEssay());
-		data.put("pageBean", pb);
-		ActionContext.getContext().put("data", data);			
-		*/
-		//ActionContext.getContext().put("news", news());			
 		ActionContext.getContext().put("news", newEssaylist(6));			
 		ActionContext.getContext().put("newEssaylist", newEssaylist(8));			
 		ActionContext.getContext().put("showMaxCountEssay", showMaxCountEssay());		
 		ActionContext.getContext().put("pageBean", pb);
 		ActionContext.getContext().put("music", getRandomMusicUrl());
-		
-		System.out.println("dddddd");
 		return "list";
 	}
 	
@@ -80,12 +63,7 @@ public class IndexAction extends BaseAction {
 	}
 	//主页的最新动态
 	public List news(){
-		//封装离线查询对象
-		/*DetachedCriteria dc = DetachedCriteria.forClass(Essay.class);
-		//1 调用Service查询分页数据(PageBean)
-		PageBean pb = es.getPageBean(dc,1,6);
-		return pb.getList();*/
-		//ms.getNews(6);
+
 		return null;
 		
 	}

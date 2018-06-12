@@ -75,12 +75,12 @@
 			</tr>
 
 			<tr>
-				<td width="200">模块分类</td>
+				<td width="200">文章模块分类</td>
 				<td>
 					<%-- 这里联动效果没有用 ，单独拿出去又有用--%> <select class="easyui-combobox"
 					name="flag" onchange="essayflag(this)">
-						<option value="1" onlick="essayflag(1)">学无止境</option>
-						<option value="2" onlick="essayflag(2)">慢生活</option>
+						<option value="1" onlick="essayflag(1)">专题活动</option>
+						<option value="2" onlick="essayflag(2)">新闻资讯</option>
 						<option value="0" onlick="essayflag(0)">其他</option>
 				</select>
 				</td>

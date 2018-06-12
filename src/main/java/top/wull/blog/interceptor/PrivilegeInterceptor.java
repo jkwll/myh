@@ -15,10 +15,6 @@ public class PrivilegeInterceptor  extends AbstractInterceptor {
 	@Override
 	public String intercept(ActionInvocation invocation) throws Exception {
 		// TODO Auto-generated method stub
-		/*String path = UserAction.class.getClassLoader().getResource("admin.properties").getPath();  
-		FileInputStream in = new FileInputStream(path);  
-		Properties prop = new Properties();  
-		prop.load(in);  		*/
 		ActionContext ctx = invocation.getInvocationContext();
 		Map session = ctx.getSession();
 		User user =  (User) session.get("user");
@@ -27,7 +23,6 @@ public class PrivilegeInterceptor  extends AbstractInterceptor {
 			//放行			
 			return invocation.invoke();			
 		}
-		System.out.println("return -- " + Action.LOGIN);
 		return "toLogin";
 	}
 }

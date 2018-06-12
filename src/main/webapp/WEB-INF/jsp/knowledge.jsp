@@ -22,7 +22,6 @@
 
 <script type="text/javascript">
 	function changePage(pageNum){
-		alert("215");
 		//1 将页码的值放入对应表单隐藏域中
 			$("#currentPageInput").val(pageNum);			
 

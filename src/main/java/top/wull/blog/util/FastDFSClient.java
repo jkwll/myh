@@ -42,7 +42,7 @@ public class FastDFSClient {
 	}
 	
 	/**
-	 * 将传入的文件通过dfs上传到服务器
+	 * 将上传的文件通过dfs上传到服务器
 	 * @param file
 	 * @return
 	 * @throws Exception
@@ -92,8 +92,8 @@ public class FastDFSClient {
 		//这里路径可能会写太死了。
 		//原图图片真实路径Windows路径   ip /group1/M00/00/00/ wKiRhlrc2rWAKDQ9AAAANxIGZP8172.txt
 		String hPicSrc = ip + "/"+hPicUrl[0]+"/"+hPicUrl[1];			
-		//压缩图片
-		File filelue = PictureChangeSize.compressImage2(imgFile, 500);		
+		//压缩图片 这里就是设置压缩图片的大小的
+		File filelue = PictureChangeSize.compressImage2(imgFile, 200);		
 		String []  luePicUrl= UploadFileByFastDFS(filelue);
 		String luePicSrc = ip + "/"+luePicUrl[0]+"/"+luePicUrl[1];
 		//高清，略缩图

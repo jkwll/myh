@@ -59,10 +59,14 @@ public class URLFilter implements Filter {
 	         //httpreq.getRemoteHost();这个可能是代理的地址
 	       // String ip =httpreq.getRemoteHost();
 	        //HttpServletResponse httpres = (HttpServletResponse) response;
-	        String urlStr = "http://ip.taobao.com/service/getIpInfo.php";
+	       // String urlStr = "http://ip.taobao.com/service/getIpInfo.php";
 	        AddressUtils au = new AddressUtils();
 	        String ip =au.getRemortIP(httpreq);
-	        String address = au.getAddresses("ip="+ip, "utf-8");
+	        String ip1 = ip;
+	        if(ip.indexOf(",")!=-1){
+		        ip1 = ip.substring(0, ip.indexOf(","));
+	        }
+	        String address = au.getAddresses("ip="+ip1, "utf-8");
 	        ias.insertLog(address,url);
 		chain.doFilter(request, response);
 			
